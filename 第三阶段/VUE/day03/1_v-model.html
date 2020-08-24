@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+   <!--想点百度一下，可按关键词搜索-->
+  <!--1. 先做界面: 
+    问题: 哪里可能发生变化
+    本例中: 当用户在文本框中输入新内容时，input的value可能发生变化，希望new Vue()中自动获得用户输入的新值，所以用该用v-model:绑定。
+    问题: 哪个元素会触发事件
+    本例中: 点击button执行查找操作
+          用户在文本框上按回车，也能执行和按钮的click一样的查找操作！-->
+  <div id="app">
+     <input type="text" @keyup="search2" v-model:value="keywords"><button @click="search">百度一下</button>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      //3. 定义模型对象
+      //问题: 页面中共需要几个变量
+      //本例中: 页面中只需要一个变量keywords，且如果用户未输入时，keywords的默认值为""
+      //问题: 页面中共需要几个事件处理函数
+      //本例中: 按钮需要search函数
+      //       文本框需要search2函数
+      data:{keywords:""},
+      methods:{
+        search(){
+         //如果用户输入的关键词去空格后不为空
+          if(this.keywords.trim()!==""){
+            //才用关键词执行查找操作
+            console.log(`查找 ${this.keywords} 相关的内容....`)
+          }
+        },
+        search2(e){
+           //只有点在回车上，才执行search操作
+          if(e.keyCode==13){
+            this.search();
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var email="zhangdong@tedu.cn";
+    var arr=email.split("@");
+    console.log(arr);
+    var uname=arr[0];
+    var domain=arr[1];
+    console.log(`用户名为${uname},域名为${domain}`);
+    var str="you can you up";
+    var arr1=str.split(" ");
+    console.log(arr1);
+    //翻转字符串
+    var str1="hello";
+    //str.reverse(); 错误，因为reverse()是数组家的函数，
+    //可以先打散字符串，按空字符分隔，在还原成字符串
+    var arr2=str1.split("");  //o,e,l,l,h
+    console.log(arr2);
+    arr2.reverse();
+    var arr3=arr2.join("");
+    console.log(arr3);
+  </script>
+</body>
+</html>

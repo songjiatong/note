@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var lilei={
+      sname:"Li Lei",
+      friends:["然然","亮亮","东东"],
+      //intr:function(){  //是墙，可以拦住this
+      //ES6新规定：所有对象的方法可以省略“:function”
+      //但是，省略了：function的方法，绝不等于箭头函数，只是单纯的简写而已
+      intr(){  //作用域---墙
+      //intr:()=>{   //不是墙，也拦不住this了，该方法中的this都指向了window
+        //this.friends.forEach(function(val){  //作用域---墙
+        this.friends.forEach(val=>{  //没有墙了，拦不住this了，也不用写.bind了
+          console.log(`${this.sname} 认识 ${val}`);
+        }//.bind(this)
+        )
+      }
+    };
+    lilei.intr();
+  </script>
+</body>
+</html>

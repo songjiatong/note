@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      #canvas{
+        border:1px solid #000;
+        margin:0 auto;
+        display: block;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+      let canvasEle=document.getElementById('canvas');
+      let ctx=canvasEle.getContext('2d');
+      
+      canvasEle.width=600;
+      canvasEle.height=480;
+      let width=50;
+      let data=[
+        {label:'家用电器',value:180},
+        {label:'手机数码',value:160},
+        {label:'电脑办公',value:140},
+        {label:'家具电器',value:120},
+      ]
+      let colors=['#f00','#0f0','#00f','#faa','#aaf'];
+      let space=Math.floor(canvasEle.width-200-40-width*data.length)/(data.length-1);
+      ctx.beginPath();
+      ctx.moveTo(100,100);
+      ctx.lineTo(100,canvasEle.height-100);
+      ctx.lineTo(canvasEle.width-100,canvasEle.height-100);
+      ctx.strokeStyle='red';
+      ctx.stroke();
+      ctx.font='10px Microsoft Yahei';
+      ctx.textAlign='center';
+      for(let i=0;i<data.length;i++){
+
+        let color=Math.floor(Math.random()*colors.length);
+        ctx.fillStyle=colors[color];
+        colors.splice(color,1);
+        ctx.fillRect((width+space)*i+100+20,canvasEle.height-data[i].value-100,width,data[i].value);
+
+        ctx.fillStyle='#000';
+        ctx.fillText(data[i].value,(width+space)*i+100+20+width/2,canvasEle.height-data[i].value-100-5);
+        ctx.fillText(data[i].label,(width+space)*i+100+20+width/2,canvasEle.height-90);
+      }
+
+      let mark=30;
+      let spaceH=Math.floor((canvasEle.height-200)/mark);
+      ctx.textAlign='center';
+      for(let i=0;i<spaceH;i++){
+        ctx.beginPath();
+        ctx.fillRect(100,canvasEle.height-100-i*mark,5,1);
+
+        ctx.fillText(i*mark,100-20,canvasEle.height-100-i*mark);
+      }
+    </script>
+</body>
+</html>

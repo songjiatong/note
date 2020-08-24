@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //一个公共的计算薪资的函数
+    //              底薪   奖金1   奖金2
+    function jisuan(base, bonus1, bonus2){
+      console.log(`${this.ename}的总工资是:${base+bonus1+bonus2}`);
+    }
+
+    //两个员工希望计算自己的薪资
+    var lilei={ename:"Li Lei"};
+    var hmm={ename:"Han Meimei"};
+    //lilei不想总是call(lilei)这么麻烦，于是想自己买一个专属的jisuan()函数
+    var js_lilei=jisuan.bind(lilei,10000);//没有输出，没有调用函数
+    //               复制函数副本,不改变原jisuan()函数
+    //js_lilei=function(base=10000, bonus1, bonus2){
+    //  console.log(`${lilei.ename}的总工资是:${base+bonus1+bonus2}`);
+    //}
+    js_lilei(2000,3000);
+        //this->lilei
+    js_lilei(1000,2000);
+        //this->lilei
+    js_lilei(2000,2000);
+        //this->lilei
+
+    //hmm依然可以使用原来公共的jisuan()，不受影响
+    jisuan.call(hmm,3000,4000,2000)
+  </script>
+</body>
+</html>

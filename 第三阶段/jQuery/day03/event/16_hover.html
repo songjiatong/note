@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		#target {
+			border: 1px solid #eee;
+			border-radius: 6px;
+			padding: 10px;
+			transition: all .5s linear;
+		}
+		#target.hover {
+			border: 1px solid #aaa;
+			box-shadow: 0 0 6px #aaa;
+		}
+	</style>
+ </head>
+ <body>
+  <h1>使用hover(fn,fn)</h1>
+
+	<h3>鼠标悬停在div上方，则突出显示；移出则取消突出显示</h3>
+	<div id="target">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi neque quae voluptatum ducimus culpa itaque maxime distinctio soluta cum cupiditate esse tenetur deserunt fuga perferendis sed veritatis asperiores. Numquam officia.</p>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+    	//鼠标进入#target，为#target添加class hover，鼠标移出#target，为#target清除class hover
+		$("#target")
+		// .mouseenter(function(){
+		// 	$(this).addClass("hover")
+		// })
+		// .mouseleave(function(){
+		// 	$(this).removeClass("hover")
+		// })
+		// .hover( //=mouseenter+mouseleave
+		// 	function(){ $(this).addClass("hover") }, //给mouseenter
+		// 	function(){ $(this).removeClass("hover") } //给mouseleave
+		// 	//因为鼠标进出时，都是修改*一个元素*#target的class在*有hover和没有hover之间来回切换，所以addClass()和removeClass()，都可以改造成toggleClass()
+		// )
+		.hover( //=mouseenter+mouseleave
+			function(){ //既给mouseenter，又给mouseleave
+				$(this).toggleClass("hover") 
+			}//,
+			// function(){ $(this).toggleClass("hover") }
+		)
+	</script>
+ </body>
+</html>

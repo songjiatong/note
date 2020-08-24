@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+    var obj={
+      host:"192.1680.100",
+      port:3306,
+      db:"xz"
+    };
+    //希望obj对象中的所有属性，禁止修改，禁止删除
+    //且禁止给obj添加新属性
+    Object.freeze(obj);
+    //尝试给obj添加新属性
+    //obj._host="127.0.0.1";
+    //尝试删除host属性
+    //delete obj.host;
+    //尝试修改obj中host的值
+    //obj.host="localhost";
+  </script>
+</body>
+</html>

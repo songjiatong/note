@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var t=0;
+    function f1(){
+      console.log(`f1共耗时0.3s`);
+      t+=0.3;
+    }
+    function f2(){
+      console.log(`f2共耗时0.3s`);
+      t+=0.8;
+    }
+    //一段无意义的代码
+    var err=false;
+    if(err==true){
+      //var t=new Date();//  变量t会被声明提前，虽然不执行该程序，但是会影响t,
+      let t=new Date();//变成块级作用域，不影响以外的程序
+      console.log(`出错啦，at${t.toLocaleString()}`);
+    }
+    f1();
+    f2();
+    console.log(t);
+  </script>
+</body>
+</html>

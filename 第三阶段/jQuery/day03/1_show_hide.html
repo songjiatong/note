@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		*{margin:0; padding:0;}
+		#target{
+			border-radius:10px;
+			background:#eee;
+			display: none;
+		}
+		
+	</style>
+ </head>
+ <body>
+	<h1>jQuery动画函数——显示隐藏动画</h1>
+	<button id="btn1">显示/隐藏div</button>
+	<div id="target">
+		<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore debitis animi sint iste sequi sunt ad excepturi error labore molestiae est expedita eos nisi placeat provident dolorem quos facilis! Sapiente!</span><span>Accusamus neque id reprehenderit! Voluptatem in deleniti laboriosam commodi facere magnam impedit minima corrupti distinctio culpa amet optio natus esse. Inventore incidunt ab id perspiciatis atque minus magnam tempore harum.</span></p>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$("#btn1").click(function(){
+      //让#target元素显示或隐藏
+		//$("#target").toggle(2000);  //括号内加毫秒数，添加动画   显示隐藏
+			//$("#target").slideToggle();   //上滑下滑  默认自带动画
+			$("#target").fadeToggle();   //淡入淡出  默认自带动画
+		});
+	</script>
+ </body>
+</html>

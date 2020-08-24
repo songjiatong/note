@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .pages{
+      list-style:none;
+    }
+    .pages>li{
+      float: left;
+      padding:5px 10px;
+      border:1px solid #000;
+    }
+    .pages>li~li{
+      border-left:none;
+    }
+    .pages>li:first-child{
+      border-radius: 5px 0 0 5px;
+    }
+    .pages>li:last-child{
+      border-radius: 0 5px 5px 0;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul class="pages">
+      <li>下一页</li>
+      <li v-for="i of pageCount">{{i}}</li>
+      <li>上一页</li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        pageCount:7
+      }
+    })
+  </script>
+</body>
+</html>

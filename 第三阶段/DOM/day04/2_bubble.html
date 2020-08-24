@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>事件处理</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/2.css"/>
+		
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d2">
+				<div id="d3">
+				</div>
+			</div>
+		</div>
+    <script>
+			var d1=document.getElementById("d1");
+			var d2=document.getElementById("d2");
+			var d3=document.getElementById("d3");
+			//本意：点谁，谁喊疼
+			d1.onclick=function(e){
+				alert(`d1疼`);
+				//e.stopPropagation();
+				//由于父级元素没有事件处理函数了，所以可以不用写
+			}
+			d2.onclick=function(e){
+				alert(`d2疼`);
+				e.stopPropagation();
+			}
+			d3.onclick=function(e){
+				alert(`d3疼`);
+				e.stopPropagation();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--用户选择城市，切换不同的城市图片-->
+  <!--1. 做界面
+    问题: 整个界面中共有几处可能发生变化？
+    本例中: select元素的value属性值和img的src属性值，两处可能发生变化
+    又因为: select元素是由用户手动选择的，而img的src是根据select的选择被动接受的。所以select元素采用双向绑定，img的src采用单项绑定。
+    规律: select元素选中的value值，就是img的src值，所以，select的value和img的src可共用一个变量-->
+  <div id="app">
+    <select v-model:value="src">
+      <option value="img/bj.jpg">北京</option>
+      <option value="img/sh.jpg">上海</option>
+      <option value="img/hz.jpg">杭州</option>
+    </select><br/>
+    <img :src="src">
+  </div>
+  <script>
+    //2. 创建new Vue()对象
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象:
+      //问题: 界面上共需要几个变量
+      //本例中只需要一个变量就可同时控制select和img。
+      data:{
+        src:"img/sh.jpg",//开局默认选中上海
+      }
+    })
+  </script>
+</body>
+</html>

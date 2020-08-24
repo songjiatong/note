@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+            margin: 0 auto;
+            display: block;
+        }
+  
+        .container{
+            width:800px;
+            margin: 0 auto;
+            border:1px solid #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="container">
+        <input type="text" id="text">
+        <input type="button" value="发送" onclick="add()">
+        <select name="speed" id='speed'>
+            <option value="1">极慢</option>
+            <option value="2" selected>慢</option>
+            <option value="3">快</option>
+            <option value="6">极快</option>
+        </select>
+        <select name="size" id='size'>
+            <option value="10">小号</option>
+            <option value="12" selected>中号</option>
+            <option value="15">大号</option>
+            <option value="20">超大</option>
+        </select>
+        <select name="color" id='color'>
+            <option value="#f00">红色</option>
+            <option value="#0f0">黄色</option>
+            <option value="#00f">蓝色</option>
+            <option value="#322325" selected>默认</option>
+        </select>
+    </div>
+
+    <script>
+        let canvasEle = document.getElementById('canvas');
+        let ctx = canvasEle.getContext('2d');
+
+        canvasEle.width = 800;
+        canvasEle.height = 480;
+
+        let message=['水至清则无鱼','人至清则无徒','博览见识广','寡言少是非','不善使船嫌港区','不善泼墨嫌笔秃'];
+        let barrages=[];
+        let colors=['#f00','#00f','#f0f','#432423'];
+
+        function add(){
+            
+            barrages.push({
+                text:document.getElementById('text').value,
+                color:document.getElementById('color').value,
+                speed:document.getElementById('speed').value,
+                size:document.getElementById('size').value,
+                x:-canvasEle.width,
+                y:Math.ceil(Math.random()*canvasEle.height)
+            })
+            document.getElementById('text').value='';
+        }
+
+        message.forEach(item => {
+            barrages.push({
+                text:item,
+                color:colors[Math.floor(Math.random()*colors.length)],
+                speed:Math.ceil(Math.random()*3)+1,
+                size:Math.ceil(Math.random()*15)+10,
+                x:-canvasEle.width,
+                y:Math.ceil(Math.random()*canvasEle.height)
+            })
+        });
+
+        function draw(){
+            ctx.clearRect(0,0,canvasEle.width,canvasEle.height);
+            barrages.forEach(item=>{
+                ctx.font=item.size+'px Microsoft Yahei';
+                ctx.fillStyle=item.color;
+                item.x-=item.speed;
+                ctx.fillText(item.text,item.x,item.y);
+                if(item.x<-ctx.measureText(item.text).width){
+                    item.x=canvasEle.width;
+                }
+            })
+            window.requestAnimationFrame(draw);
+        }
+        draw();
+
+     
+    </script>
+</body>
+
+</html>

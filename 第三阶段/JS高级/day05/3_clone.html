@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //克隆一个对象 
+    var lilei={
+      sname:"lilei",
+      sage:11
+    }
+    //错误做法
+    //var lilei2=lilei;只是起了一个外号，
+    //正确做法
+    function clone(oldObj){
+      //1.创建空对象
+      var newObj={};
+      //2.遍历旧对象中的每个属性
+        for(var key in oldObj){
+          //3.给新对象强行赋值和旧对象同名的属性，且属性值也要相同
+          //newObj.key=oldObj.key;//错误的。  .key等同于["key"],
+          //正确的：
+          newObj[key]=oldObj[key];
+        }
+        //4.返回新数组
+      return newObj;
+    }
+    let lilei2=clone(lilei);
+    console.log(lilei);
+    console.log(lilei2);
+    console.log(lilei==lilei2);
+    lilei2.sage=100;
+    //改变克隆的属性值，原对象值不会改变-
+    console.log(lilei.sage);
+  </script>      
+</body>
+</html>

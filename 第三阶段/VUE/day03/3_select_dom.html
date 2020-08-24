@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <select id="selCts">
+    <option value="img/bj.jpg">北京</option>
+    <option value="img/hz.jpg">杭州</option>
+    <option value="img/sh.jpg">上海</option>
+  </select>
+  <button id="btnSubmit">提交</button>
+  <script>
+    document.getElementById("btnSubmit").onclick=function(){
+      var selCts=document.getElementById("selCts");
+      //DOM: 当前选中的option的value会自动成为整个select元素的value属性
+      console.log(`您选择的城市图片是 ${selCts.value}`)
+    }
+  </script>
+</body>
+</html>

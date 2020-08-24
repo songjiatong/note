@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      position:fixed;
+      left:50%;
+      bottom:0;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <img src="img/p3.png" :style="style">
+  </div>
+  <script>
+    var vm=new Vue({
+      el:"#app",
+      data:{
+        style:{
+          marginLeft:"-100px",
+          bottom:0  //0可以不加单位
+        }
+      }
+    })
+
+    window.onkeydown=function(e){
+      if(e.keyCode==38){
+        var bottom=parseInt(vm.style.bottom);
+        vm.style.bottom=bottom+10+"px";
+      }else if(e.keyCode==40){
+        var bottom=parseInt(vm.style.bottom);
+        vm.style.bottom=bottom-10+"px";
+      }else if(e.keyCode==37){
+        var marginLeft=parseInt(vm.style.marginLeft);
+        vm.style.marginLeft=marginLeft-10+"px";
+      }else if(e.keyCode==39){
+        var marginLeft=parseInt(vm.style.marginLeft);
+        vm.style.marginLeft=marginLeft+10+"px";
+      }
+    }
+  </script>
+</body>
+</html>

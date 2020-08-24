@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+    }
+    li {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+<ul id="list">
+  <li>尼康(234)</li>
+  <li>佳能(22)</li>
+  <li>索尼(932)</li>
+  <li>宾得(11)</li>
+  <li>爱国者(3234)</li>
+  <li>欧巴(32)</li>
+  <li>海鸥(2334)</li>
+  <li>卡西欧(334)</li>
+  <li>三星(834)</li>
+  <li>松下(234)</li>
+  <li>其它品牌(2343)</li>
+</ul>
+
+<button data-toggle="brandlist">精简显示品牌</button>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //为data-toggle="brandlist"绑定单击事件:
+  $("[data-toggle=brandlist]")
+  .click(function(){
+    //下标大于4且不是最后一个元素的所有li元素
+    $("li:gt(4):not(:last-child)").toggle();
+    var $this=$(this);
+    //如果显示精简显示品牌，就换成显示所有品牌，否则，就显示精简显示品牌
+    $this.html($this.html()==`精简显示品牌` ? `显示所有品牌` : `精简显示品牌`)
+  })
+</script>
+</body>
+</html>

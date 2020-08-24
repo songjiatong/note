@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+    function Student(sname,sage){
+      this.sname=sname;//报错：不能设置undefined的sname属性
+      this.sage=sage;
+    }
+    //正确的构造函数的用法
+    var lilei=new Student("Li Lei",11);
+    console.log(lilei);
+    //错误的构造函数的用法
+    var hmm=Student("Han Meimei",12);//严格模式下，this指向undefined，
+    console.log(hmm);
+  </script>
+</body>
+</html>

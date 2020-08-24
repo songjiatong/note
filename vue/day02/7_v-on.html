@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app>div{
+      width:300px;
+      height:150px;
+    }
+    #d1{
+      background-color:red
+    }
+    #d2{
+      background-color:green;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="d1" @click="say('d1')"></div>
+    <div id="d2" @click="say('d2')"></div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      methods:{
+        //dname形参可接受点击div时传过来的字符串div名
+        say(dname){
+          alert(`${dname} 疼!`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

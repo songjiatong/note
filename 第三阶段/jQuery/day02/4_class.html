@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .btn {
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid #aaa;
+      outline: none;
+    }
+    /* .btn:hover{
+      background:#ddd;
+      color:#fff;
+    } */
+    /* 按钮默认未被按下时的样子 */
+    .up {
+      background: #fff;
+      color: #333;
+    }
+    /* 按钮被按下时的样子 */
+    .down {
+      background: #ddd;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn up">双态按钮</button>
+
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //双态按钮: 让按钮的class在up和down之间切换
+  //DOM4步
+  //查找触发事件的元素
+  //本例中:点击安按钮切换自己的class
+  $("button")
+  //绑定事件处理函数
+  .click(function(){
+    //查收要修改的元素
+    //var $self=$(this);
+    //修改元素
+    //如果当前元素有down的class
+    // if($self.hasClass("down")){
+    //   //就移除down,让按钮恢复默认
+    //   $self.removeClass("down");
+    // }else{//如果没有down,
+    //   //就添加down的class
+    //   $self.addClass("down");
+    // } 
+    $(this).toggleClass("down");  //相当于上面的if else判断
+  })
+     
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <video src="video/oceans.mp4" id="video"></video>
+
+   <script>
+       var videoEle=document.getElementById('video');
+       videoEle.width=480;
+       videoEle.height=400;
+       console.log(videoEle.width);
+       console.log(videoEle.height);
+       videoEle.addEventListener('loadeddata',()=>{
+         console.log(videoEle.videoWidth); 
+         console.log(videoEle.videoHeight); 
+       })
+       
+   </script>
+</body>
+</html>

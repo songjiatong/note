@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>操作元素的内容和值</h1>
+	<form action="">
+		用户名:<input type="text" name="uname">
+					<span id="uname-msg"></span><br>
+		密码:<input type="password" name="upwd">
+					<span id="upwd-msg"></span><br>
+		<input type="submit" value="提交注册信息">
+	</form>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+    //正确时，使用图片:"<img src='img/ok.png'>"
+    //姓名错误时: "<img src='img/err.png'>用户名必须介于3~9位之间!"
+    //密码错误时: "<img src='img/err.png'>密码必须介于6~8位之间!"
+
+		//封装一个可以供两种input用的函数
+		function vali(txt,minlength,maxlength,errMsg){
+			//查找要修改的元素
+			//本例中，修改当前文本框旁边的下一个兄弟的元素
+			var $span=$(txt).next();   //nextElementSibling
+			//修改元素
+			//首先要获得当前文本框的内容
+			var value=$(txt).val().trim();  //trim():去掉开头和末尾的空字符干扰
+			//如果内容的长度在3-9之间
+			if(value.length>=minlength && value.length<=maxlength){
+				//就设置$span的html为正确的内容
+				$span.html(`<img src='img/ok.png'>`);
+			}else{//否则就设置$span的html为错误的内容
+				$span.html(`<img src='img/err.png'>`+errMsg);
+			}	
+		}
+
+
+    //DOM4步
+		//查找触发事件的元素
+		var $texName=$(":text");
+		//绑定事件处理函数
+		$texName.blur(function(){
+			vali(this,3,9,`用户名必须介于3~9位之间!`);
+		})
+			
+		 //DOM4步
+		//查找触发事件的元素
+		var $pwdName=$(":password");
+		//绑定事件处理函数
+		$pwdName.blur(function(){
+			vali(this,6,8,`密码必须介于6~8位之间!`);
+		})
+	</script>
+ </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict"
+    var eric={
+      eid:1001,
+      ename:"埃里克"
+    };
+    //希望eid只读
+    Object.defineProperty(eric,"eid",{
+      writable:false,
+      configurable:false
+    })
+    //希望eric中的属性是不可扩展的，就是禁止添加新属性
+    Object.preventExtensions(eric);
+    //试图修改eid
+    eric.eid=1002;//报错，不能给只读属性赋值
+    //试图给对象添加新的不同名的eid属性
+    eric.Eid=1003;//报错，eid是不可扩展的
+  </script>
+</body>
+</html>

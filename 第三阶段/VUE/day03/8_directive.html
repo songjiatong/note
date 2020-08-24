@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script>
+    //给Vue加添加一个新的指令my_focus
+    Vue.directive("my_focus",{
+      inserted(elem){
+        elem.focus();
+      }
+    })
+  </script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-my_focus>
+  </div>
+  <script>
+    //new Vue()中什么也没写，但是也不能删除，
+    //因为指令全靠new Vue()扫描界面，浏览器自己不认识任何指令
+    new Vue({
+      el:"#app",
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script>
+    //定义一个计数器组件，点+/-号，可更改数量
+    //1. 创建组件对象, 定义组件名称,多个英文单词用-分割
+    Vue.component("my-counter",{
+      //每个组件的制作过程和new Vue()制作过程几乎完全一样
+      //2. 定义界面模板:template
+      //要求唯一父元素包裹
+      //问: 模板中共有几处可能发生变化
+      //本例中: 只有span的内容可能发生变化,所以用{{n}}标记
+      //问: 模板中哪些元素可能触发事件
+      //本例中: 两个button可点击执行+-计算，所以用@click标记
+      template:` 
+      <div>
+        <button @click="minus">-</button><span>{{n}}</span><button @click="add">+</button>
+      </div>`,
+      //3. 创建模型对象
+      //问: template模板中共需要几个变量
+      //本例中: 共需要1个变量n
+      data(){  //将来会被自动反复调用
+        return {  //反复创建模型对象副本——这里才相当于new Vue()中data对象
+          n:1
+        } 
+      },
+      //其余和new Vue()就完全一样了
+      //问: 模板中共需要几个函数
+      //本例中共需要minus和add两个函数
+      methods:{
+        minus(){
+          if(this.n>1){this.n--}
+        },
+        add(){this.n++}
+      }
+    })
+  </script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li><my-counter></my-counter></li>
+      <li><my-counter></my-counter></li>
+      <li><my-counter></my-counter></li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+    })
+  </script>
+</body>
+</html>

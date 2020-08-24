@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fun(){
+      var i=0;
+      return function(){
+        i++;
+        console.log(i);
+      }
+    }
+    var getNum=fun();
+    getNum();
+    i=1;
+    getNum();
+    function add(){
+      var sum=0;
+      for(var i=0;i<arguments.length;i++){
+        sum+=arguments[i];
+      }
+      console.log(sum);;
+    }
+    add(1,2,3);
+    add(1,2,3,4);
+    var object={
+      name:"obj",
+      getName:function(){
+        var that=this;
+       return function(){
+         console.log(that.name)
+       }
+      }
+    }
+    object.getName()();
+  </script>
+</body>
+</html>

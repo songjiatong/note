@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="axios.min.js"></script>
+</head>
+<body>
+  <button id="btn1">get a count</button>
+<script>
+  /*btn1.onclick=function(){//外层函数
+      //在闭包中保存一个变量保存每次请求临时使用的script
+      var script=null; //受保护的变量1
+      //为防止多个请求的回调函数重名，每个请求的回调函数，我们都采用"doit"+当前时间的毫秒数+4位随机数
+      var ms=new Date().getTime();
+      var r=parseInt(Math.random()*9000+1000);
+      var fname=`doit${ms}${r}`; //受保护的变量2
+      //先将本次请求的随机函数名的回调函数，添加到全局
+      //参数res，可自动接收到服务端返回的JSON.parse()编译后的js可直接使用的数组或对象。
+      window[fname]=function(res){//内层函数: 通过给window赋值方式出去的，进而保留下来的。
+        console.log(res);
+        //但是，一定在回调函数执行结尾，把本次用完的回调函数和script节点删除掉删掉。
+        document.head.removeChild(script);
+        delete window[fname];
+      }
+      //再动态添加一个<script>元素到<head>元素中，<script>的src属性包含着这次要发给服务器端的参数和随机回调函数名，只要添加<script>就会再次发送script请求。
+      script=document.createElement("script");
+      script.src=`http://localhost:5050?type=a&&callback=${fname}`;
+      document.head.appendChild(script);
+    }*/
+  //axios.get()
+  //axios.post()
+  //为axios对象添加jsonp函数，专门用于发送jsonp请求
+  //url参数: 服务端接口地址:http://localhost:5050/user/login
+  //data参数: 要携带的参数字符串: "uname=dingding&upwd=123456"
+  axios.jsonp=function(url,data){
+    //所有axios的函数都是支持promise的，所以
+    return new Promise(
+      function(resolve,reject){
+        //Promise中的代码和不用promise时是完全一样的
+        var script=null;
+        var ms=new Date().getTime();
+        var r=parseInt(Math.random()*9000+1000);
+        var fname=`doit${ms}${r}`;
+        window[fname]=function(res){
+          //要对res做什么处理，应该下一个.then说了算！
+          //这里只负责开门，并传出服务端返回结果
+          resolve(res);
+          //删除本次临时使用的script和函数
+          document.head.removeChild(script);
+          delete window[fname];
+        }
+        script=document.createElement("script");
+        script.src=`${url}?${data}&&callback=${fname}`;
+        document.head.appendChild(script);
+      }
+    )
+  };
+
+  axios.jsonp(
+    "http://localhost:5050",
+    "type=a"
+  ).then(res=>{
+    console.log(`处理1:`); 
+    console.log(res)
+  });
+  axios.jsonp(
+    "http://localhost:5050",
+    "type=c"
+  ).then(res=>{
+    console.log(`处理2:`); 
+    console.log(res)
+  });
+  
+</script>
+</body>
+</html>

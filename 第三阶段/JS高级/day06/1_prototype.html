@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Student(sname,sage){
+      this.sname=sname,
+      this.sage=sage
+    }
+    Student.prototype.ClassName=function(){
+      console.log(`初一二班`);
+    }
+    var lilei=new Student("lilei",11);
+    var hmm=new Student("hmm",12);
+    //正确：
+    Student.prototype.ClassName=function(){
+      console.log(`初二二班`);
+    }
+    //错误
+    //lilei.ClassName=function(){
+    //  console.log(`初二二班`);
+    //}
+    console.log(lilei);
+    console.log(hmm);
+    lilei.ClassName();
+    hmm.ClassName();
+  </script>
+</body>
+</html>

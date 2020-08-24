@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>操作元素的属性</h1>
+	<img src="img/1.jpg" alt="1">
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//单击图片，切换下一张，到第四张时，再从第一种重新开始
+		//DOM 4步
+		//查找触发事件的元素
+		var $img=$("img");
+		//绑定事件处理函数
+		$img.click(function(){
+			 //查找要修改的元素
+			 var $this=$(this);
+			 //修改元素
+			 //取出现在看的第几张图片的序号，（在当前alt的属性中）,转为整数
+			 var i=parseInt($img.attr("alt"));
+			 //                  .prop("alt");
+			//如果i<4,将序号+1;否则i=1;
+			i<4?(i++):(i=1);
+			//将该序号拼接为图片格式放入ing的src中
+			var src=`img/${i}.jpg`;
+			//$img.attr("src",src);
+			//   .prop("src",src);
+			//再将改序号保存在alt中，为下一轮做准备
+			//$img.attr("alt",i);
+			//   .prop("alt",i)
+ 
+			//可以同时修改多个，用对象格式
+			$img.attr({
+				src:src,
+				alt:i
+			});
+		})
+		  
+	</script>
+ </body>
+</html>

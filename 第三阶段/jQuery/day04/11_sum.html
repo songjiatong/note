@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <ul>
+    <li>85</li>
+    <li>91</li>
+    <li>73</li>
+    <li>59</li>
+  </ul>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //向jQuery中添加一个自定义新函数sum,可计算将来查询结果中所有DOM元素内容求和
+    //jQuery.fn=jQuery.prototype
+    //jQuery.prototype.sum=function(){
+    jQuery.fn.sum=function(){
+      console.log(`调用自己定义的sum()函数`);
+      var result=0;
+      //遍历将来调用这个sum()函数.前的jQuery查询结果对象中的每个DOM元素
+      for(var i=0;i<this.length;i++){  //this指的是.前的jQuery对象，所以可以直接写this,不用写$(this)
+        result+=parseInt(this[i].innerHTML);  //从this指向的jQuery对象中取i位置的元素是一个DOM对象，所以要用.innerHTML,由于是在操作原型对象中的方法，所以可以不用管DOM和jQuery混着写
+      }
+      console.log(result);
+    }
+    //对jQuery的查询结果调用sum()函数
+    $("ul>li").sum();
+  </script>
+</body>
+</html>

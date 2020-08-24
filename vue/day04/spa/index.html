@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js">
+    //实现单页面应用的核心组件
+  </script>
+  <script src="views/index.js">
+    //var index={ ... }
+  </script>
+  <script src="views/details.js">
+    //var details={ ... }
+  </script>
+  <script src="views/notFound.js">
+    //var notFound={ ... }
+  </script>
+  <!--因为router.js中用到了index和details两个组件对象,所以要先引入index.js和details.js-->
+  <script src="router.js">
+    //var router=new VueRouter(...)
+  </script>
+  <script src="components/header.js">
+    //全局组件哪里引入都行，没有限制
+    //Vue.component("my-header",{ ... })
+  </script>
+</head>
+<body>
+  <div id="app">
+    <router-view>停车位</router-view>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      router
+    })
+  </script>
+</body>
+</html>

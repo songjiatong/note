@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //原有的Animal类型
+    function Animal(name,age){
+      this.name=name,
+      this.age=age
+    } 
+    Animal.prototype.intr=function(){
+      console.log(`I am:${this.name},I am:${this.age}`);
+    }
+
+
+    //创建一个新的类型来继承上面的Animal类型
+    function People(name,age,Classname){
+      //在子类型内部调用原类型函数
+      //Animal(name,age)//  由于调用时没有指明是谁调用，所以其中的this指向了window,泄漏到了全局
+      //当一个函数执行时，this不是自己想要的，都可以用.call,.apply,.bind方法
+      //Animal.call(name,age);//  由于在调用People使用new调用的，所以People中的Classname属性可以进入到lilei中，说明在调用People是，this是对的，所以可以用调用People是的this来替换调用父对象时的this
+      Animal.call(this,name,age);
+      this.Classname=Classname
+    } 
+    Animal.prototype.run=function(){
+      console.log(`${this.name}在全力奔跑`);
+    }
+
+    //首先让People.prototype继承Animal.prototype
+    Object.setPrototypeOf(People.prototype,Animal.prototype);
+    var lilei=new People("Li lei",11,"初一二班");
+    lilei.intr();
+    lilei.run();
+  </script>
+</body>
+</html>

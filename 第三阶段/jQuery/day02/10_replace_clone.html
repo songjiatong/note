@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h1>替换节点</h1>
+
+<div id="chosen">
+  <img src="img/p0.png">
+</div>
+<hr/>
+<div id="list">
+  <img src="img/p3.png">
+  <img src="img/p4.png">
+  <img src="img/p5.png">
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //DOM4步
+  //查找触发事件的元素
+  //本例中。点击#lis洗的img可以选择飞机
+  $("#list>img")
+  //绑定处理事件函数
+  .click(function(){
+    //查找要修改的元素
+    //本例中：用当前选中的img,克隆一个副本，将副本代替#chosen下的img
+    $("#chosen>img")
+     //修改元素
+    .replaceWith($(this).clone());  //将元素添加到DOM数的这类函数，既可以支持js也支持DOM对象，所以可以直接写this
+  })
+     
+</script>
+</body>
+</html>

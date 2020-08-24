@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      #canvas{
+        border:1px solid #000;
+        margin:0 auto;
+        display: block;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div style="text-align: center">
+      <input type="text" id="text">
+      <select name="color" id="color">
+        <option value="#000">默认</option>
+        <option value="#f00">红色</option>
+        <option value="#0f0">黄色</option>
+        <option value="#00f">蓝色</option>
+      </select>
+      <select name="size" id="size">
+          <option value="10px">默认</option>
+          <option value="8px">小号</option>
+          <option value="12px">中号</option>
+          <option value="22px">大号</option>
+      </select>
+      <input type="button" value='发送' onclick='send()'>
+    </div>
+    <script>
+      let canvasEle=document.getElementById('canvas');
+      let ctx=canvasEle.getContext('2d');
+      canvasEle.width=1000;
+      canvasEle.height=500;
+      let message=['真好看','男主演技不行','剧荒了！！'];
+      var barrage=[];
+
+      function send(){
+        var obj={};
+        obj.text=document.getElementById('text').value;
+        obj.color=document.getElementById('color').value;
+        obj.font=document.getElementById('size').value;
+        console.log(obj.font);
+        obj.x=1000;
+        obj.y=Math.ceil(Math.random()*canvasEle.height);
+        obj.speed=Math.floor(Math.random()*3)+2;
+        barrage.push(obj);
+        document.getElementById('text').value  = ''
+      }
+
+      
+
+  
+      message.forEach(item=>{
+        var obj={};
+        obj.text=item;
+        obj.x=canvasEle.width;
+        obj.y=Math.ceil(Math.random()*canvasEle.height);
+        obj.color='red';
+        obj.font=(Math.ceil(Math.random()*12)+10)+'px';
+        obj.speed=Math.ceil(Math.random()*3)+2;
+        barrage.push(obj);
+      })
+
+      function animation(){
+        ctx.clearRect(0,0,1000,500);
+        barrage.forEach(item=>{
+          ctx.fillStyle=item.color;
+          ctx.fillText(item.text,item.x,item.y);
+          ctx.font = item.font + " Microsoft Yahei";
+          item.x -= item.speed;
+          if(item.x< - ctx.measureText(item.text).width){
+            item.x=canvasEle.width;
+          }
+          
+        })
+        window.requestAnimationFrame(animation);
+      }
+      animation();
+    </script>
+</body>
+</html>

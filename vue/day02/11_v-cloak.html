@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*凡是带有v-cloak属性的元素暂时都隐藏*/
+    [v-cloak]{
+      display:none
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1 v-cloak>用户名:{{uname}}</h1>
+    <h2 v-cloak>积分:{{score}}</h2>
+  </div>
+  <script>
+    setTimeout(function(){
+      new Vue({
+        el:"#app",
+        data:{
+          uname:"dingding",
+          score:1200
+        }
+      })
+    },3000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //观察者模式
+    var data={
+      money:1000,  //创建一个可以被改变的变量
+      setMoney(money){ //创建一个可以修改变量money的值的函数setMoney()函数
+        this.money=money,//修改变量的值
+        this.notifyAll();  //表示只要变量money的值被修改，就立刻调用观察者们数组中的函数
+      },
+      abserver:[], //创建一个可以保存观察者们对象的数组
+      notifyAll(){  //遍历每一个数组中的对象，
+        this.abserver.forEach(function(obj){
+          //表示只要是该数组中的对象，就有一个可以获得被修改的变量值的函数setMoney();表示自己是时刻关注变量money的值的变化的,证明自己是观察者们对象
+          obj.getMoney();  
+        })
+      }
+    };
+    //创建三个观察者对象，给一个初始的变量money的值，并且提示只要值被修改，就打印一段话
+    var obj1={
+      money:0,
+      getMoney(){
+        console.log(`obj1得知data中的money被改变为${data.money}`),
+        this.money=data.money
+      }
+    };
+    var obj2={
+      money:0,
+      getMoney(){
+        console.log(`obj2得知data中的money被改变为${data.money}`),
+        this.money=data.money
+      }
+    };
+    var obj3={
+      money:0,
+      getMoney(){
+        console.log(`obj3得知data中的money被改变为${data.money}`),
+        this.money=data.money
+      }
+    }
+    //将每一个观察者们对象添加到abserver数组张
+    data.abserver.push(obj1);
+    data.abserver.push(obj2);
+    data.abserver.push(obj3);
+    //调用setMoney()函数，改变变量moeny的值
+    data.setMoney(900);
+    console.log(obj1.money,obj2.money,obj3.money);
+  </script>
+</body>
+</html>

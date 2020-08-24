@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--点同意才启用其他表单元素-->
+  <!--1. 先做界面
+    问题: 点击checkbox时，界面中共有几处变化
+    本例中: checkbox自己的选中状态会改变，input和button的disabled属性值会改变
+    因为: checkbox是由用户手动切换选中状态，应该用双向绑定
+    但是: input和button的disabled，是被动接受启用和禁用状态。用户并不是直接修改他们。应该用单向绑定
+    规律: 如果checkbox选中，则input和button都启用，disabled为false才是启用。如果checkbox未选中，则input和button都禁用，disabled为true才是禁用。所以，checkbox的checked属性值应该和disabled属性值取反即可！所以，只需要1个变量即可控制三个元素的状态-->
+  <div id="app">
+    <!--              未 同意时才是禁用-->
+    <input :disabled="!isAgree"><br/>
+    <label><input type="checkbox" v-model:checked="isAgree">同意</label><br/>
+    <!--              未 同意时才是禁用-->
+    <button :disabled="!isAgree">提交</button>
+  </div>
+  <script>
+    //2. 创建new Vue()
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象
+      //问题:整个页面只需要1个变量就可控制所有元素状态
+      data:{
+        isAgree:false //开局默认暂时是不同意。
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 凡是带有v-cloak的元素暂时都隐藏 */
+    [v-cloak]{display: none;}
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1 v-cloak>用户名：{{ename}}</h1>
+    <h1 v-cloak>积分：{{score}}</h1>
+  </div>
+  <script>
+    //还没开始执行new Vue()时，v-cloak会将该元素暂时隐藏
+    setTimeout(function(){
+      new Vue({
+        el:"#app",
+        data:{
+          ename:"dingding",
+          score:100
+        }
+      })
+    },3000)//3秒后，执行new Vue(),会自动为元素删除v-cloak属性
+  </script>
+</body>
+</html>

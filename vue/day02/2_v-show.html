@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0; padding:0}
+    .alert{
+      width:300px;
+      height:100px;
+      border:1px solid #555;
+      position:fixed;
+      top:50%;
+      left:50%;
+      margin-left:-150px;
+      margin-top:-50px;
+    }
+    .alert>p{
+      text-align:right;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 做界面
+    问题: 哪里可能发生变化
+    本例中: 只有div.alert元素的显示隐藏会发生变化
+    所以: 在div.alert元素上添加v-show="show"
+    意为: 用一个变量show的值，来控制div.alert是显示还是隐藏
+    问题: 点按钮，让对话框显示，点x可让对话框隐藏
+    本例中: 为button按钮绑定单击事件，当单击时，自动执行login函数。为a按钮绑定单击事件，当单击时，自动执行close函数-->
+  <div id="app">
+    <button @click="login">登录</button>
+    <div class="alert" v-show="show">
+      <p><a href="javascript:;" @click="close">×</a></p>
+      用户名:<input><br/>
+      密码:<input type="password"><br/>
+      <button>登录</button>
+    </div>
+  </div>
+  <script>
+    //2. 创建new Vue()，监控id为app的元素区域
+    new Vue({
+      el:"#app",
+      //3. 定义对象data保存页面上所需的所有变量
+      //问题: 页面上共需要几个变量?
+      //本例中: 页面上只需要一个变量show,且因为控制显示隐藏，所以变量show的值应该是一个bool值！
+      data:{
+        show:false //希望div.alert开始时默认隐藏
+      },
+      //问题: 页面上共需要几个事件处理函数?
+      //本例中: 页面上需要2个事件处理函数login和close。
+      //login让div.alert显示，就要将show变量值改为true
+      //close让div.alert隐藏，就要将show变量值改为false
+      //强调: methods中的事件处理函数只要专心操作变量值就够了！无需管页面上如何修改！
+      methods:{
+        login(){ this.show=true },
+        close(){ this.show=false }
+      }
+    })
+  </script>
+</body>
+</html>

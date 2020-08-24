@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>事件处理</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/2.css"/>
+		
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d2">
+				<div id="d3">
+				</div>
+			</div>
+		</div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+		//只给最外层div d1绑定鼠标事件
+		$("#d1")
+			// //当鼠标进入d1时输出：进入d1
+			// //.mouseover(function(){
+			// .mouseenter(function(){
+			// 	console.log(`进入d1`)
+			// })//return $("#d1")
+			// //当鼠标移出d1时输出: 离开d1
+			// //.mouseout(function(){
+			// .mouseleave(function(){
+			// 	console.log(`离开d1`)
+			// })
+			.hover( //mouseenter+mouseleave
+				function(){//给mouseenter
+					console.log(`进入d1`) 
+				},
+				function(){//给mouseleave
+					console.log(`离开d1`)
+				}
+			)
+		</script>
+	</body>
+</html>

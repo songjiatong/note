@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>取消与利用冒泡</title>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<div id="keys">
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button><br>
+			<button>C</button>
+			<button>+</button>
+			<button>-</button>
+			<button>=</button>
+		</div>
+		<textarea id="sc" style="resize:none;width:200px; height:50px;" readonly></textarea>
+    <script>
+			//DOM4步
+			//查找触发事件的元素
+			//本例中：8个按钮都要点击
+			//不好的做法：给每个按钮绑定单击事件，页面中事件绑定的个数就大大增加，会影响时间响应的速度
+			//好的做法:8个按钮都用一个相同的父级元素，给父元素绑定单击事件，这样点击子元素时，所有子元素就会利用冒泡机制共用父元素上的一个事件处理函数
+			var div=document.getElementById("keys");
+			//绑定事件处理元素
+			div.onclick=function(e){
+				//alert(`疼!`);
+				//希望，点谁，让谁的内容变为❀
+				//this.innerHTML="❀";   错误：this指向了.前的div
+				//本例中：只希望点按钮时 才变成❀，点别的地方。什么也不变
+				if(e.target.nodeName=="BUTTON"){  //nodeName当前元素的全大写标签名
+				//if(e.target.className=="child"){   //如果按钮的class为child,也可以
+					//e.target.innerHTML="❀";  //代替了this解决了指向的问题
+				
+				//查找要修改的元素
+				//本例中：点按钮。将内容输出到id为sc的文本域中
+				//修改元素
+				//判断当前点击的按钮的内容
+				switch(e.target.innerHTML){
+					//如果点的是C,就清空
+					case "C":
+						sc.value="";  //因为sc是表单textarea的内容，所以要用value
+						break;
+					//如果点=，就计算sc的内容，并保存回sc中
+					case "=":
+						//先尝试：
+						//将sc的内容放入到eval()中，请eval()帮我们执行，并把结果放回sc中
+						try{
+							sc.value=eval(sc.value);
+						}catch(err){//捕获错误，并把结果显示到sc中
+							sc.value=err;
+						}
+						break;
+					//如果点其他内容，就将该内容追加到sc的内容之后
+					default:
+						sc.value+=e.target.innerHTML;
+					}
+				}   
+			}
+		</script>
+	</body>
+</html>

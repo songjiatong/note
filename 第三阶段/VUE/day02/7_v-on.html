@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app>div{
+      width:300px;
+      height: 150px;
+    }
+    #d1{
+      background-color: #f00;
+    }
+    #d2{
+      background-color: #0f0;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="d1" @click="say($event,'d1')"></div>   <!-- 将DOM事件对象(e)封装在了$event中 -->
+    <div id="d2" @click="say($event,'d2')"></div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      methods:{
+        // //当单击时，获得鼠标点击的位置
+        // say(e){   //自动创建event
+        //   alert(`x:${e.offsetX},y:${e.offsetY}`)
+        // }
+        //既想获得实参，又想获得事件对象(e)
+        say(e,ename){    //传入时，再将DOM事件对象(e)给了形参e
+        alert(`点在${ename}的x:${e.offsetX},y:${e.offsetY}`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

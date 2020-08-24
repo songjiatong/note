@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script>
+    //定义一个过滤器，翻译性别1和0
+    Vue.filter("sexFilter",function(oldVal,langage="cn"){
+      if(langage=="cn"){
+        return oldVal==1?"男":"女"
+      }else{
+        return oldVal==1?"man":"woman"
+      }
+    })
+    //再定义一个过滤器，为性别后面加图标
+    Vue.filter("sexIcon",function(oldVal){
+      if(oldVal==1 || oldVal==0){
+        return oldVal==1?"♂":"♀"
+      }else if(oldVal=="男" || oldVal=="女"){
+        return oldVal=="男"?oldVal+"♂":oldVal+"♀"
+      }else{
+        return oldVal=="man"?oldVal+"♂":oldVal+"♀"
+      }
+    })
+  </script>
+</head>
+<body>
+  <div id="app">
+    <div>{{sex1 | sexFilter}}</div>
+    <div>{{sex2 | sexFilter}}</div>
+    <div>{{sex1 | sexFilter("en")}}</div>
+    <div>{{sex2 | sexFilter("en")}}</div>
+    <div>{{sex1 | sexIcon}}</div>
+    <div>{{sex2 | sexIcon}}</div>
+    <div>{{sex1 | sexFilter | sexIcon}}</div>
+    <div>{{sex2 | sexFilter | sexIcon}}</div>
+    <div>{{sex1 | sexFilter("en") | sexIcon}}</div>
+    <div>{{sex2 | sexFilter("en") | sexIcon}}</div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        sex1:1,
+        sex2:0
+      }
+    })
+  </script>
+</body>
+</html>

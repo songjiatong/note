@@ -1,0 +1,26 @@
+li{
+	list-style:none;
+}
+li span{
+	padding-left: 20px;
+	cursor: pointer;
+  background: url("../images/add.png") no-repeat center left;
+}
+li ul{
+	height:0px;
+	transition:all .5s linear;
+	overflow: hidden;
+}
+.open{ background: url("../images/minus.png") no-repeat center left; }
+/* 如果打开的是第一个li,则它里边的span旁边的ul高度为104px */
+li:nth-child(1)>span.open+ul{ 
+	height:104px;
+}
+/* 如果打开的是第二个li,则它里边的span旁边的ul高度为78px */
+li:nth-child(2)>span.open+ul{ 
+	height:78px;
+}
+/* 如果打开的是第三个li,则它里边的span旁边的ul高度为150px */
+li:nth-child(3)>span.open+ul{ 
+	height:150px;
+}

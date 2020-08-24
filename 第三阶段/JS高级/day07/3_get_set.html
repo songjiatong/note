@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //要求年龄可修改，但是年龄必须介于18~65之间
+    var eric={
+      eid:1001,
+      ename:"埃里克",
+      _eage:25 //隐姓埋名 —— 不想让外人随意使用
+    }
+    Object.defineProperties(eric,{
+      _eage:{ //半隐藏
+        enumerable:false,
+        configurable:false
+      },
+      //请保镖: 
+      eage:{//冒名顶替
+        //保镖一请就是一对儿
+        //专门负责从受保护的属性中，获取属性值
+        get:function(){
+          console.log("自动调用eage的get()")
+          //返回受保护的属性_eage的值
+          return this._eage;
+        },
+        //专门负责将要修改的新值，结果验证后，才保存到受保护的属性中
+        set:function(value){
+          console.log(`自动调用eage的set(${value})`)
+          if(value>=18&&value<=65){
+            this._eage=value;
+          }else{
+            throw Error(`年龄必须介于18~65之间！`)
+          }
+        },
+        enumerable:true, //让eage替_eage抛头露面
+        configurable:false //不能轻易删除保镖
+        //因为保镖不实际保存属性值，所以没有value属性
+        //因为writable开关无法灵活保护属性值，所以保镖也没有writable开关
+      }
+    })
+
+    //外界
+    //试图读取eric的年龄时
+    console.log(eric.eage)
+    //试图修改eric的年龄为26
+    eric.eage=26;
+    console.log(eric.eage)
+    //试图修改eric的年龄为-2
+    //eric.eage=-2; //报错
+
+    console.log(eric);
+  </script>
+</body>
+</html>

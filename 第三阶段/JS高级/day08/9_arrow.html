@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var add=(a,b)=>a+b;
+    console.log( add(3,5) );
+
+
+    (()=>console.log(`我是匿名函数自调`))();
+     
+    var arr=[23,345,23,43,4];
+    arr.sort((a,b)=>a-b);
+    console.log(arr);
+
+    var arr=["亮亮","然然","东东"];
+    arr.forEach(val=>console.log(`${val}-到`));
+
+    var arr=[98,432,42,23,31];
+    var arr2=arr.map(val=>`<li>${val}</li>`);
+    console.log(arr2);
+
+
+    var str="you can you up,no can no bibi";
+    str=str.replace(/\b[a-z]/g,kw=>kw.toUpperCase());
+    console.log(str);
+
+    var n=10;
+    var timer=setInterval(()=>{
+      console.log(n);
+      n--;
+      if(n==0){
+        console.log("boom!");
+        clearInterval(timer);
+      }
+    },1000 )
+  </script>
+</body>
+</html>

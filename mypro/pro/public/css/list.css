@@ -1,0 +1,72 @@
+a:hover{
+  text-decoration: none;
+}
+.hide{
+  width:0;
+  height:0;
+  overflow: hidden;
+}
+.in{
+  width:100%;
+  height:210px;
+
+}
+.my_bg{
+  background-color:#aaa;
+}
+.page-link {
+  border-radius: .25rem;
+  background-color: transparent;
+  border-color: #faa;
+  padding:2px 15px;
+}
+.page-item+.page-item{margin-left: 0.35rem;}
+.page-link:hover{    border-color: #f00;}
+.page-link:focus{    
+  outline: 0;
+  box-shadow: 0 0 0 0 ;
+}
+.box{
+  height:1000px;
+  overflow: hidden;
+}
+.my_carousel{
+  height:2000px;
+  animation: remove 10s linear infinite;
+}
+.my_carousel:hover{
+  animation-play-state:paused;
+}
+.my_carousel>div{
+  border:1px solid #faa;
+  border-radius: 20px;
+}
+.my_carousel>div>a>img{
+  border-radius:20px;
+}
+@keyframes remove{
+  from{margin-top:0;}
+  to{margin-top:-1000px}
+}
+.my_bg{
+  background-color: #aaa;
+}
+.my_bg>li{
+  border-bottom:2px solid #aaa;
+}
+.my_bg>li:hover{
+  border-bottom:2px solid #f00;
+}
+.subject:hover{
+  color:#f00;
+}
+
+
+
+#box>li>a:focus{
+  background-color: #f00;
+  font-size:14px;
+  border-radius: 5px;
+  color:#fff !important;
+  padding:2px 5px;
+}

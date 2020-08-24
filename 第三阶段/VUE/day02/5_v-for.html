@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul style="list-style-type:circle">
+      <li v-for="(p,i) of products" :key="i">{{p.pid}} | {{p.pname}} | {{p.price}}&nbsp;&nbsp;&nbsp;&nbsp;{{products[i]}}</li>
+    </ul>
+    <ul>
+      <li v-for="(value,key) of lilei" :key="key">{{key}} ：{{value}}</li>
+    </ul>
+    <!-- 每次遍历把对象给p,下标给i -->
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        products:[
+          {pid:1,pname:"华为",price:3588},
+          {pid:2,pname:"苹果",price:8588},
+          {pid:3,pname:"小米",price:6588},
+        ],
+        lilei:{
+          sid:1001,
+          sname:"lilei",
+          sage:11
+        }
+      }
+    })
+  </script>
+</body>
+</html>

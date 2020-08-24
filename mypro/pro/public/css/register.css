@@ -1,0 +1,11 @@
+.register{
+  background-image: url('/img/background.jpg');
+  padding: 20px;
+  margin-top: 50px;
+}
+.register>div{
+  width:300px;
+  height: 600px;
+  background: transparent;
+  border:0;
+}

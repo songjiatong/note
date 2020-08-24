@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>根据页面滚动位置显示浮动框</title>
+	<style>
+    body{height:2000px;}
+    #toTop{
+      position:fixed;
+      bottom:100px;
+      right:0;
+      display:none;
+    }
+  </style>
+
+ </head>
+ <body>
+	<div id="toTop">
+		<a id="a1" href="#">返回顶部</a>
+	</div>
+  <script>
+    //全局变量
+    var scrollTop;
+    window.onscroll=function(){
+      scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+      console.log(scrollTop);
+      //才能查找id为toTop的div
+      var toTop=document.getElementById("toTop");
+      if(scrollTop>=500){
+        toTop.style.display="block";
+      }else{
+        toTop.style.display="none";
+      }
+    }
+    //让a按钮回到顶部
+    a1.onclick=function(e){
+      e.preventDefault();
+      //window.scrollTo(0,0);  没有动画效果
+      //动画效果：
+      //先设置总距离
+      var dist=scrollTop;
+      //设置总步数
+      var steps=50;
+      //设置总时间
+      var dura=500;
+      //可以计算出一步走多长
+      var step=dist/steps;  //总距离除以总步数
+      //每步的间隔时间
+      var interval=dura/steps;  //总时间除以总步数
+      //定义一个定时器
+      var timer=setInterval(function(){
+        window.scrollBy(0,-step);  //定义每次窗口滚动过的步数
+        //每走一步，总步数就减一
+        steps--;
+        //如果减到0，就停止走，就停止计时器
+        if(steps==0){
+          clearInterval(timer);
+          //清除后，要重新把步数还原为原来的总步数
+          steps=500;
+        }
+      },interval);  //定时器的时间间隔为每步的时间间隔
+    }
+	</script>
+ </body>
+</html>

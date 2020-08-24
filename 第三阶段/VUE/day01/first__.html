@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+  <button>-</button><span>1</span><button>+</button>
+  <script>
+    //查找触发事件元素
+    var $btn=$("button:contains(+)")
+    //绑定事件处理函数
+    .click(function(){
+      //查找要修改的元素
+      var $span=$(this).prev();
+      //修改元素
+      var n=parseInt($span.html());
+      n++;
+      $span.html(n);
+    })
+    
+  </script>
+</body>
+</html>

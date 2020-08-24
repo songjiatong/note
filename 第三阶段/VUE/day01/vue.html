@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 1.先定义界面，要求;
+   1.1整个界面必须包裹早唯一的一个父元素内，习惯上，唯一父元素明敏维id="app"
+   1.2找到整个界面可能发生巴哈的位置，用{{变量名}}标记出来
+   1.3找到触发事件的元素，在元素开始标签中绑定事件处理函数：@事件名="函数名"
+  -->
+  <div id="app">
+    <button @click="minus">-</button><span>{{n}}</span><button @click="add">+</button>
+  </div>
+
+
+   
+  <!-- 2.定义专门保存页面所需的变量和事件处理函数对象
+    //本例中：页面中一共需要一个变量n和两个事件处理函数（minus和add）,所以需要创建一个对象"data",保存变量n和n的初始值，创建一个变量methods保存两个事件处理函数 -->
+  <script>
+    //相当于Model  模型对象
+    var data={n:1};
+    var methods={
+      //method中的方法想要操作data中的变量，必须加this.  !
+      //method中的方法只要专心操作变量值即可，不用关心页面中
+      minus:function(){if(this.n>1){this.n--}},
+      add:function(){this.n++}
+    }
+
+    // 创建一个快递员对象，告诉快递员负责哪个元素，变量和方法
+    new Vue({  //相当于ViewModel.视图模型，将界面和模型对象绑定起来
+      el:"#app",
+      data,  //data:data,
+      methods   //methods:methods
+    })                                                               
+  </script>
+</body>
+</html>

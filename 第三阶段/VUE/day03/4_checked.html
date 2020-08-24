@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 点击同意就启用其他表单元素 
+    点击checkbox界面中共有三处变化
+    checkbox自己会变化
+    input和button的disabled会变化
+    checkbox手动切换，双向绑定
+    input和button的disabled是根据checkbox的checked的属性值改变的，单向绑定
+    如果checkbox选中，则两个disabled都为false
+    如果未选中，则两个disabled都为true,所以
+    checkbox属性值和两个disabled的属性值取反就可以
+    只需要一个变量-->
+  <div id="app">
+    <input :disabled="!isAgree"><br>
+    <input type="checkbox" id="inp1" v-model:checked="isAgree"><label for="inp1">同意</label><br>
+    <button :disabled="!isAgree">提交</button>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        isAgree:false  //默认不同意
+      }
+    })
+  </script>
+  
+</body>
+</html>

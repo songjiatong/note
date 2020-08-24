@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      border:1px solid #000;
+      margin:0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    let canvasEle=document.getElementById('canvas');
+    let ctx=canvasEle.getContext('2d');
+    
+    canvasEle.width=800;
+    canvasEle.height=480;
+    let array=[123,324,134,110,234,333];
+    let colors=['#f00','#0f0','#00f','#ffa','#ffa','#aff','#aaa','#bbb'];
+    let width=50;
+    let space=Math.floor(canvasEle.width-array.length*width)/(array.length-1);
+    ctx.font='16px Microsoft Yahei';
+    ctx.textAlign='center';
+    for(let i=0;i<array.length;i++){
+      let color=Math.floor(Math.random()*colors.length);
+      ctx.fillStyle=colors[color];
+      colors.splice(color,1);
+      ctx.fillRect((width+space)*i,canvasEle.height-array[i],width,array[i]);
+      ctx.fillText(array[i],(space+width)*i+width/2,canvasEle.height-array[i]-10);
+    }
+  </script>
+</body>
+</html>

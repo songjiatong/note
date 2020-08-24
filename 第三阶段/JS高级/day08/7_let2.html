@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a=10;
+    let b=100;//let声明的变量不会被放到全局变量中
+    console.log(window);//没有b变量,
+    //在let之前不能提前使用let声明的变量
+    console.log(c);//不报错，c=undefined
+    var c=10;
+    console.log(d);//报错，不能在let声明前使用变量 Cannot access 'd' before initialization
+    let d=100;
+    let e=10;
+    let e=30;//报错：变量名e已经被声明过了
+  </script>
+</body>
+</html>

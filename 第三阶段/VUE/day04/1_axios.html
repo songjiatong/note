@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- axios可独立运行，不需要vue.js -->
+  <script src="js/axios.min.js"></script>
+</head>
+<body>
+  <script>
+    axios.defaults.baseURL="http://xzserver.applinzi.com";
+
+    axios.get("/index")
+    .then(result=>{
+      console.log(result.data);
+    });
+
+    axios.get("/details",{params:{lid:5}})
+    .then(result=>{
+      console.log(result.data);
+    });
+
+    axios.post("/users/signin","uname=dingding&upwd=123456")
+    .then(result=>{
+      console.log(result.data)
+    })
+
+    
+  </script>
+</body>
+</html>

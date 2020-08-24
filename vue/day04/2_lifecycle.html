@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/axios.min.js"></script>
+</head>
+<body>
+  <!--希望在页面上加载首页6个商品的列表-->
+  <div id="app">
+    <ul>
+      <li v-for="(p,i) of products" :key="i">
+        {{i+1}} | {{p.title}} | {{p.price}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        products:[]
+      },
+      //axios.get()放哪儿，就能让他自动执行？！
+      beforeCreate(){
+        console.log(`创建data对象之前触发beforeCreate`)
+      },
+      created(){
+        console.log(`创建data对象之后触发created`)
+      },
+      beforeMount(){
+        console.log(`创建虚拟DOM树之前触发beforeMount`)
+      },
+      mounted(){
+        console.log(`页面挂载完成后触发mounted`)
+        axios.get("http://xzserver.applinzi.com/index")
+          .then(result=>{
+            console.log(result.data);
+            //将result.data保存到vue中data中的products变量上
+            this.products=result.data;
+            //触发vue对象的update生命周期阶段！
+          });
+      },
+      //不是必经阶段！只有data中的变量值被更改时才触发。
+      beforeUpdate(){
+        console.log(`修改data中的products变量之前触发beforeUpdate`)
+      },
+      updated(){
+        console.log(`修改完data中的products变量之后触发updated`)
+      },
+    })
+
+    
+  </script>
+</body>
+</html>

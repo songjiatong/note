@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>必须用live server运行!!!</h1>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //请求http://xzserver.applinzi.com/index接口返回的首页所需6个商品
+    $.ajax({//向xxx发送请求
+      url:"http://xzserver.applinzi.com/index",
+      type:"get",
+      dataType:"json",//将返回的json字符串自动转化为js中可用的对象或数组
+      success:function(result){//当成功收到响应结果后，自动执行
+        console.log(result);
+      }
+    })
+    //请求http://xzserver.applinzi.com/details接口返回的5号商品的详情
+    $.ajax({//向xxx发送请求
+      url:"http://xzserver.applinzi.com/details",
+      type:"get",
+      data:{ lid:5 }, //自动翻译为?lid=5，并自动追加到url之后
+      dataType:"json",//将返回的json字符串自动转化为js中可用的对象或数组
+      success:function(result){//当成功收到响应结果后，自动执行
+        console.log(result);
+      }
+    })
+    //请求http://xzserver.applinzi.com/users/signin接口进行登录
+    $.ajax({//向xxx发送请求
+      url:"http://xzserver.applinzi.com/users/signin",
+      type:"post",
+      data:{ uname:"dingding", upwd:"123456" }, //自动放入post请求的请求体body中
+      dataType:"json",//将返回的json字符串自动转化为js中可用的对象或数组
+      success:function(result){//当成功收到响应结果后，自动执行
+        console.log(result);
+      }
+    })
+  </script>
+</body>
+</html>

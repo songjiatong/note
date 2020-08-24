@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1{background-color:yellow;}
+  </style>
+</head>
+<body>
+  <h1 id="h1" style="color:red">晒太阳了</h1>
+  <script>
+    //var h1=document.getElementById("h1");
+    // console.log(`h1的字体颜色:${h1.style.color}`);
+    // console.log(`h1的背景颜色:${h1.style.backgroundColor}`);
+    // console.log(`h1的字体大小:${h1.style.fontSize}`);
+    var h=getComputedStyle(h1);
+    console.log(`h1的字体颜色:${h.color}`);
+    console.log(`h1的背景颜色:${h.backgroundColor}`);
+    console.log(`h1的字体大小:${h.fontSize}`);
+    //h.color="green";  只读，不可修改
+  </script>
+</body>
+</html>

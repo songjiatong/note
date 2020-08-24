@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //删除字符串开头和结尾的空字符  trim修剪
+    //只删除开头的空字符
+    /*function trimLeft(str){
+      return str.replace(/^\s+/,"");
+    }*/
+    //只删除结尾的空字符
+    /*function trimRight(str){
+      return str.replace(/\s+$/,"");
+    }*/
+    //同时删除开头和结尾的空字符
+    /*function trim(str){
+      return str.replace(/^\s+|\s+$/g,"");
+    }*/
+    //ES5、6的新标准中已经包含了内置的trim函数；
+    //测试代码
+    var str="   hello  word    ";
+    console.log( str.trimLeft() );
+    console.log( str.trimRight() );
+    console.log( str.trim() );
+  </script>
+</body>
+</html>

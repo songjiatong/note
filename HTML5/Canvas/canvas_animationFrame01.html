@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas {
+      background: #000;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    canvas.width = 1366;
+    canvas.height = 300;
+
+
+    function Circle(x, y, radius) {
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.xDistance = Math.random() * 2 > 1 ? Math.random() * 2 : -Math.random() * 2;
+      this.yDistance = Math.random() * 2 > 1 ? Math.random() * 2 : -Math.random() * 2;
+    }
+
+
+    function draw(circle) {
+
+      if (circle.x > canvas.width) {
+        circle.xDistance = -circle.xDistance;
+      }
+      if (circle.x < 0) {
+        circle.xDistance = -circle.xDistance;
+      }
+
+      if (circle.y > canvas.height) {
+        circle.yDistance = -circle.yDistance;
+      }
+      if (circle.y < 0) {
+        circle.yDistance = -circle.yDistance;
+      }
+      circle.x += circle.xDistance; 
+      circle.y += circle.yDistance;
+
+
+
+      ctx.fillStyle = '#ccc';
+      ctx.beginPath();
+      ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+
+
+    var array = [];
+    let number = 400;
+    function init() {
+
+      for (let n = 0; n < number; n++) {
+        let x = Math.floor(Math.random() * canvas.width);
+        let y = Math.floor(Math.random() * canvas.height);
+        let radius = Math.ceil(Math.random() * 3) + 1;
+        array.push(new Circle(x, y, radius));
+      }
+    }
+
+    function linear() {
+      let colors = ['#f00', '#0f0', '#00f', '#ffa', '#ffa', '#aff', '#aaa', '#bbb'];
+      for (var n = 0; n < array.length; n++) {
+        for (var m = n + 1; m < array.length; m++) {
+          // 直角三角形
+          let xDistance = (array[n].x - array[m].x) * (array[n].x - array[m].x);  //x轴两点距离
+          let yDistance = (array[n].y - array[m].y) * (array[n].y - array[m].y);  //y轴两点距离
+          let distance = Math.sqrt(xDistance + yDistance);  //两点的直线距离，算出距离用来做判断，不能所有的点都用直线连接
+          if (distance < 40) {   //两点之间距离小于40才连接
+            ctx.beginPath();
+            ctx.moveTo(array[n].x, array[n].y);
+            ctx.lineTo(array[m].x, array[m].y);
+            let color = Math.floor(Math.random() * colors.length);
+            ctx.strokeStyle = colors[color];
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+
+
+    // function animation() {
+    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   for (let i = 0; i < array.length; i++) {
+    //     draw(array[i]);
+    //   }
+    //   linear();
+    //   window.requestAnimationFrame(animation);
+    // }
+
+    // function getPointOnCanvas(canvas, x, y) {
+    //   var bbox = canvas.getBoundingClientRect();
+    //   return {
+    //     x: x - bbox.left * (canvas.width / bbox.width),
+    //     y: y - bbox.top * (canvas.height / bbox.height)
+    //   };
+    // }
+
+
+    // // 获取canvas元素及鼠标的位置方法
+    // function getPointOnCanvas(canvas, x, y) {
+    //   var bbox = canvas.getBoundingClientRect();
+    //   console.log(bbox);
+    //   return {
+    //     x: x - bbox.left * (canvas.width / bbox.width),
+    //     y: y - bbox.top * (canvas.height / bbox.height)
+    //   };
+    // }
+    // let started = false;
+    // // 鼠标在画布上某个位置点击左键时，以该位置为起点开始画线，
+    // // 只有起点的方法函数
+    // function doMouseDown(event) {
+    //   var x = event.pageX;
+    //   var y = event.pageY;
+    //   var canvas = event.target;
+    //   var loc = getPointOnCanvas(canvas, x, y);  //loc获取到了鼠标在canvas画布上的x 和 y的坐标
+    //   console.log("mouse down at point( x:" + loc.x + ", y:" + loc.y + ")");
+    //   ctx.beginPath();
+    //   ctx.moveTo(loc.x, loc.y);
+    //   started = true;
+    // }
+    // // 如果开始画，就随着鼠标左键按下并且移动开始画画
+    // function doMouseMove(event) {
+    //   var x = event.pageX;
+    //   var y = event.pageY;
+    //   var canvas = event.target;
+    //   var loc = getPointOnCanvas(canvas, x, y);
+    //   if (started) {
+    //     ctx.lineTo(loc.x, loc.y);
+    //     ctx.strokeStyle='#000'
+    //     ctx.stroke();
+    //   }
+    // }
+    // // 鼠标左键松开，停止作画
+    // function doMouseUp(event) {
+    //   console.log("mouse up now");
+    //   if (started) {
+    //     doMouseMove(event);
+    //     started = false;
+    //   }
+    // }
+
+    // // mouse event
+    // canvas.addEventListener("mousedown", doMouseDown, false);
+    // canvas.addEventListener('mousemove', doMouseMove, false);
+    // canvas.addEventListener('mouseup', doMouseUp, false);
+    // init();
+    // animation();
+  </script>
+</body>
+
+</html>

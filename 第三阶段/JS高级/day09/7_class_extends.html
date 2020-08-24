@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //创建父级类型flyer,替Plane和San两个子类型保管相同部分属性和方法
+    class Flyer{
+      constructor(x,y){
+        this.x=x;
+        this.y=y
+      }
+      fly(){
+        console.log(`飞机飞到x=${this.x},y=${this.y}位置`);
+      }
+    }
+
+
+    //定义敌机类型Plane,继承(extends)父对象Flyer
+    class Plane extends Flyer{
+      constructor(x,y,score){
+        super(x,y);//借助父类型Flyer的构造函数，来帮助子类型为孩子添加相同部分的属性定义
+        this.score=score;
+      }
+      getScore(){
+        console.log(`击落一架敌机，得到${this.score}分`);
+      }
+    } 
+
+
+    //定义降落伞类型fly,继承(extends)父对象Flyer
+    class San extends Flyer{
+      constructor(x,y,award){
+       //借助父类型Flyer的构造函数，来帮助子类型为孩子添加相同部分的属性定义
+        this.award=award;  
+         super(x,y);
+      }
+      getAward(){
+        console.log(`击落降落伞，得到${this.award}奖励`);
+      }
+    } 
+
+
+    var p1=new Plane(2,20,50);
+    p1.fly();
+    p1.getScore();
+
+
+    var s1=new San(3,60,"100发子弹");
+    s1.fly();
+    s1.getAward();
+  </script>
+</body>
+</html>

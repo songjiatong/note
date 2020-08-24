@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<wxs src="../../format.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="title">{{detail.title}}</view>
+  <view>
+    <image src="{{detail.images.large}}"></image>
+    <view wx:if="{{detail.directors}}">
+      导演：{{tools.formatArray(detail.directors)}}
+    </view>
+  </view>
+  <view wx:for="{{comments}}" wx:key="index">
+    <text>{{item.writer.nickname}}:{{item.content}}</text>
+  </view>
+</view>

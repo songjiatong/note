@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 实现登录状态的改变
+   1.定义界面
+   页面中两个div交替隐藏
+   定义一个变量isLogin
+    当第一个div的isLogin是false时，说明用户未登录，则删除第二个div
+    当第一个div的isLogin是true时，用户已登录，则删除第一个div 
+    当用户点击登录时，就删除第一个div,显示注销按钮的div
+    当用户点击注销时，就删除注销按钮，显示登陆按钮的div
+    分别为两个按钮定义两个事件处理函数-->
+   <div id="app">
+     <div v-if="isLogin==false"><a href="javascript:;" @click="login">登录</a> | <a href="javascript:;">注册</a></div>
+     <div v-else>Welcome dingding, <a href="javascript:;" @click="logout">注销</a></div>
+   </div>
+   <script>
+     new Vue({
+       el:"#app",
+       data:{
+         isLogin:false  //默认未登录,isLogin值和v-if的值相同，所以显示当前按钮，删除v-else的元素
+       },
+       methods:{
+         login(){this.isLogin=true},
+         logout(){this.isLogin=false}
+       }
+     })
+   </script>
+</body>
+</html>

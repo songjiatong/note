@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      display:block;
+      border:1px solid #333;
+      margin:0 auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="400"></canvas>
+  <script>
+    //数据
+    var dataset = [
+      {
+        label:'鞋',
+        value:230
+        //x轴位置: 0 * 20 = 0
+      },
+      {
+        label:'裤子',
+        value:190
+        //X轴位置: 1 * 20 = 20
+      },
+      {
+        label:'衬衣',
+        value:260
+        //X轴位置: 2 * 20 = 40
+      },
+      {
+        label:'西服',
+        value:360
+        //X轴位置: 3 * 20 = 60
+      }
+    ];
+    
+    //声明颜色的数组
+    var colors = ['#896540','#a89663','#025896','#4a5c5c','#aa66cc','#8899ab','#284545','#145669'];
+
+    //获取HTMLCanvasElement对象
+    var canvasEle = document.getElementById('canvas');
+
+    //获取CanvasRenderingContext2D对象
+    var ctx = canvasEle.getContext('2d');
+
+    //设置文本样式
+    ctx.font = "20px Microsoft Yahei";
+    //柱形图的宽度
+    var width = 50;
+    //数组中每个对象的value属性值即柱形图的高度
+    //每个柱子的Y轴坐标为：画布的高度 - 每个对象的value值
+    //通过循环结构实现
+    for(var n=0;n<dataset.length;n++){
+
+        //设置填充颜色
+        ctx.fillStyle =  colors[Math.floor(Math.random() * colors.length)];
+
+        //绘制填充矩形
+        ctx.fillRect(n*width + n * 50,400-dataset[n].value,width,dataset[n].value);
+
+        //设置文本的水平对齐方式
+        ctx.textAlign = 'center';
+
+        //绘制填充文本
+        ctx.fillText(dataset[n].value,n*width + n * 50 + width/2  ,400-dataset[n].value - 10);
+
+        //console.log(dataset[n].value);
+        //console.log('高度:' + dataset[n].value + '--Y轴是:' + (400-dataset[n].value));
+    }
+  </script>
+</body>
+</html>

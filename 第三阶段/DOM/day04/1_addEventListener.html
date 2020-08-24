@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>...</title>
+  <script>
+  </script>
+ </head>
+  
+ <body>
+    <button id="btnShoot">shoot</button><br>
+    <button id="btnAward">获得跟踪导弹</button><br>
+    <button id="btnBreak">失去跟踪导弹</button><br>
+    <script>
+       //获取三个按钮的对象
+       var btnShoot=document.getElementById("btnShoot");
+       var btnAward=document.getElementById("btnAward");
+       var btnBreak=document.getElementById("btnBreak");
+       //为普通按钮子弹绑定单击事件处理函数
+       btnShoot.onclick=function(){
+          console.log(`发射普通子弹`);
+       }
+       //为跟踪按钮导弹绑定函数
+       //同时要有普通子弹的单击处理函数
+       function Shoot2(){
+            alert(`发射跟踪导弹`)
+      };
+       btnAward.onclick=function(){
+          //alert(`发射跟踪导弹`);
+          //btnShoot.onclick=function(){
+          //console.log(`发射普通子弹`);
+         //}
+         btnShoot.addEventListener("click",Shoot2)
+         //                                  此处不加(),因为事件处理函数不是立即调用
+       }
+
+       //希望点击btnBreak,从btnShoot上移除跟踪导弹，但是依然保持普通子弹
+       btnBreak.onclick=function(){
+          btnShoot.removeEventListener("click",Shoot2);
+       }
+    </script>
+ </body>
+</html>

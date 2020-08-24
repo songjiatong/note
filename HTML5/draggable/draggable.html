@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #source,#target{
+            width:200px;
+            height:50px;
+            margin:20px auto;
+        }
+        #source{
+            border:1px solid #00f;
+        }
+        #target{
+            border:1px solid #0f0
+        }
+    </style>
+</head>
+<body>
+    <div id="source">
+        <p draggable="true">可以拖拽</p>
+    </div>
+    
+    <div id="target"></div>
+
+    <script>
+        let pEle= document.getElementsByTagName('p')[0];
+        let targetEle=document.getElementById('target');
+
+        pEle.addEventListener('dragstart',(e)=>{
+            console.log('源对象开始拖动段落了...',e.dataTransfer);
+            let html=pEle.innerHTML;
+            e.dataTransfer.setData('username',html);
+            console.log(html);
+        })
+        pEle.addEventListener('drag',()=>{
+            console.log('源对象处于悬浮状态...');
+        })
+
+
+
+        targetEle.addEventListener('dragenter',()=>{
+            console.log('源对象进入目标对象...');
+        })
+        targetEle.addEventListener('dragover',(e)=>{
+            e.preventDefault();
+            console.log('源对象在目标对象上方悬停...');
+        })
+        targetEle.addEventListener('dragleave',()=>{
+            console.log('源对象离开目标对象...');
+        })
+        targetEle.addEventListener('drop',(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('源对象在目标对象上释放...');
+            e.target.innerHTML=e.dataTransfer.getData('username');
+            pEle.innerHTML='';
+            
+        })
+        pEle.addEventListener('dragend',(e)=>{
+        
+            console.log('源对象释放...');
+        })
+    </script>
+</body>
+</html>

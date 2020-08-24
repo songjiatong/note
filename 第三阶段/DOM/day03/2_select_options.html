@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>二级联动列表</title>
+<meta charset="utf-8" />
+<style>
+	.hide{ display: none; }
+</style>
+
+
+</head>
+<body>
+	<select name="provs">
+		<option>—请选择—</option><!--0-->
+		<option>北京市</option><!--1-->
+		<option>天津市</option>
+		<option>河北省</option>
+	</select>
+	
+	<select name="cities" class="hide">
+	</select>
+  <script>
+	/*实现“省”和“市”的级联下拉列表*/
+	var cities=[
+      [{"name":'东城区',"value":101},
+       {"name":'西城区',"value":102},
+       {"name":'海淀区',"value":103},
+       {"name":'朝阳区',"value":104}],
+      [{"name":'河东区',"value":201},
+       {"name":'河西区',"value":202},
+       {"name":'南开区',"value":303}],
+      [{"name":'石家庄市',"value":301},
+       {"name":'廊坊市',"value":302},
+       {"name":'保定市',"value":303},
+       {"name":'唐山市',"value":304},
+       {"name":'秦皇岛市',"value":304}]
+	];
+  //DOM4步
+	//1.查找触发事件的元素
+  //本例中：点击name名为provs的select中的option，触发name名为cities的select元素
+  var selProvs=document.getElementsByName("provs")[0];
+  //2.绑定事件处理元素
+  //本例中，当select中的选中的选项改变时，才触发第二个select的变化
+  selProvs.onchange=function(){
+    //3.查找要修改的元素
+    //本例中，触发的是第二个城市列表的select得变化
+    //查找name名为cities的select
+    var selCts=document.getElementsByName("cities")[0];
+    //如果用户点的是请选择，就隐藏第二个select元素，并不在执行后续任何操作
+    if(this.selectedIndex===0){
+      selCts.className="hide";
+      return;
+    }
+    //获取selectedIndex
+    //alert(selCts.selectedIndex);
+    //-1后， 获得新下标i;
+    var i=this.selectedIndex-1;
+    //获得二维数组中下表为i的数组
+    var cts=cities[i];
+    //创建空的文档片段
+    var frag=document.createDocumentFragment();
+    //遍历数组cts中每个数组对象
+    //在遍历之前，为每个城市列表上放加上"-请选择-"
+    var opt=document.createElement("option");
+    opt.innerHTML="-请选择-"
+    //追加到文当片段中
+    frag.appendChild(opt);
+    for(var c of cts){
+      //4.修改元素
+      //每遍历一个数组对象，就创建一个option对象
+      //设置option的内容为当前城市的名字，并添加到文档片段中
+      var opt=document.createElement("option");
+      opt.innerHTML=c.name
+      frag.appendChild(opt);
+    }   
+    //先清空selCts中旧的内容,再追加内容
+    selCts.innerHTML="";
+    //将frag一次性添加到select中
+    selCts.appendChild(frag);
+    //并将该selCts显示出来，（清除class）
+    selCts.className="";
+  }
+</script>
+</body>
+</html>

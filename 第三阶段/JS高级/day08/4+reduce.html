@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr=[1,2,3,4,5];
+    var result=arr.reduce(function(prev,val){
+      console.log(`reduce()函数每调用一次回调函数，将临时汇总值放入prev中，当前prev=${prev},并将当前遍历到的元素放入val中，当前val=${val}`);
+      prev+=val;
+      return prev
+    },
+    0 //起始值从0开始
+    );
+    console.log(result);
+  </script>
+</body>
+</html>

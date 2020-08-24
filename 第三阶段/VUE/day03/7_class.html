@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .vali{  /*固定不变的class*/
+      padding:3px;
+      margin-left:10px;
+    }
+    .success{
+      border:1px solid green;
+      background-color:lightGreen;
+      color:green;
+    }
+    .fail{
+      border:1px solid red;
+      background-color:pink;
+      color:red;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 输入手机号，验证格式是否正确
+    1.界面 
+    界面中共有3处变化
+     1.input文本框输入的内容   ，用户手动输入，用v-model绑定
+     2.span的内容会会随着失去焦点验证的结果发生变化   被动接收验证结果 用:绑定
+     3.span的class会随着失去焦点验证的结果而改变    用{{}}绑定
+     共有3个变量
+      phone接住用户输入的内容
+      spanClsss控制span的class属性
+      msg控制span的内容
+    
+      本例中，input失去焦点时，验证输入的内容，来控制span的样式及内容的变化
+    
+      不带冒号的class是固定不变的，将来会和带冒号的class组合起来，-->
+    <div id="app">
+      <input type="text" placeholder="请输入手机号" v-model="phone" @blur="vali"><span class="vali" :class="spanClass">{{msg}}</span>
+    </div>
+  <script>
+    new Vue({
+      el:"#app",
+      //三个变量
+      data:{
+        phone:"",  //默认还未输入内容，空格字符串
+        spanClass:{  //开始默认都是没有验证的结果的，暂时任何没有样式
+          success:false,
+          fail:false
+        },
+        msg:"",  //默认还没有验证结果
+      },
+      methods:{
+        vali(){ 
+          //正则表达式
+          var reg=/^1[3-9]\d{9}$/;
+          //如果phone接到的手机号格式正确
+          //正则表达式验证用test()
+          if(reg.test(this.phone)){
+            //就修改spanClass的success为true.fail为false,  和msg为"手机号格式正确"
+            this.spanClass={success:true,fail:false}
+            this.msg="手机号格式正确"
+          }else{
+            //否则就修改spanClass的success为false.fail为true,  和msg为"手机号格式不正确"
+            this.spanClass={success:false,fail:true}
+            this.msg="手机号格式不正确"
+          } 
+        }
+      }
+    })
+  </script>
+</body>
+</html>

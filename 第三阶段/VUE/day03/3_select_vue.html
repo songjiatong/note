@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 做界面
+    本例中：切换选择时，select的value和img的src属性会发生变化
+    选中时，select的value值和img的src属性值相同，可以共用一个变量 
+    select元素时也会手动选择的，用双向绑定
+    Img的src是根据select的选择被动接收的，是单向绑定-->
+  <div id="app">
+    <select v-model:value="src">
+      <option value="img/bj.jpg">北京</option>
+      <option value="img/sh.jpg">上海</option>
+      <option value="img/hz.jpg">深圳</option>
+    </select><br>
+    <img :src="src">
+    <script>
+      //创建new Vue对象
+      new Vue({
+        el:"#app",
+        //创建模型对象
+        //本例中，是有一个变量
+        data:{
+          src:"img/sh.jpg",  //默认选择上海
+        }
+      })
+    </script>
+  </div>
+</body>
+</html>

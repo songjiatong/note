@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app>div{
+      width:300px;
+      height:150px;
+    }
+    #d1{
+      background-color:red
+    }
+    #d2{
+      background-color:green;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="d1" @click="say('d1', $event)"></div>
+    <div id="d2" @click="say('d2', $event)"></div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      methods:{
+        say(dname,e){
+          alert(`点在${dname}的x:${e.offsetX}, y:${e.offsetY}位置`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

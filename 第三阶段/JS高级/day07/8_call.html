@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //一个公共的临时计算薪资的函数
+    //               底薪  奖金1  奖金2
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename}的总工资是:${base+bonus1+bonus2}`);
+    }
+    //两个员工希望计算自己的薪资
+    var lilei={ename:"Li Lei"};
+    var hmm={ename:"Han Meimei"}
+    //lilei 要计算自己的薪资
+    //jisuan(100,200,300);//报错:this指向window,输出为undefined的总工资为...;
+    //lilei.jisuan(100,200,300);//报错：lilei.jisuan不是一个函数
+    //正确：
+    jisuan.call(lilei,100,200,300);
+    //临时调用一次jisuan函数，并将this替换为lilei,调用后恢复原样
+    jisuan.call(hmm,1000,2000,3000);
+  </script>
+</body>
+</html>

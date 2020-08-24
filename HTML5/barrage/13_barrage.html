@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      display:block;
+      border:1px solid #333;
+      margin:0 auto;
+    }
+    #user-area{
+      width:800px;
+      margin:20px auto 0 auto;
+
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="400"></canvas>
+  <div id="user-area">
+      内容:<input type="text" id="text">
+      颜色:
+      <select id="color">
+        <option value="#000000">默认</option>
+        <option value="#ff0000">红色</option>
+        <option value="#00ff00">绿色</option>
+        <option value="#0000ff">蓝色</option>
+      </select>
+      字号:
+      <select id="size">
+        <option value="17px">小的</option>
+        <option value="20px">标准</option>
+        <option value="26px">大的</option>        
+      </select>
+      <input type="button" value="发送" onclick="send()">
+  </div>
+  <script>
+
+    var count = 20;
+
+    function send(){
+        var obj = {};
+         //弹幕文本
+         obj.text = document.getElementById('text').value;
+         //弹幕颜色
+         obj.color = document.getElementById('color').value;
+         //弹幕速度
+         obj.speed = Math.ceil(Math.random() * 3) + 2;
+         //弹幕坐标
+         obj.x = 750;
+
+         obj.y = Math.floor(Math.random() * 400);
+
+         ctx.font = document.getElementById("size").value + " Microsoft Yahei";
+          
+         barrages.push(obj);
+
+         if(barrages.length >= count){
+            barrages.splice(0,1);
+         }
+
+         //清空文本
+         //document.getElementById('text').value  = '';
+        
+    }
+
+    var canvasEle = document.getElementById('canvas');
+    var ctx = canvasEle.getContext('2d');
+    
+    //存储弹幕的内容信息
+    var messages = [
+        '王凯好帅',
+        '大家好，我来了',
+        '乔帮主，演得好',
+        '这个剧情很好,谁可以剧透一下呀',
+        '这个女的演得女差呀'
+    ];
+    //因为在绘制文本需要确定文本的内容及位置,而且位置不应该是固定,
+    //特别是Y轴
+    //文本的颜色需要存在变化
+    //文本的移动速度是不同的
+    //纵上所观：每个弹幕文本都需要具备：内容、颜色、速度及坐标 --> 对象
+    //每个文本都具备以上特性，而弹幕中具备多个这样的文本，--> 数组
+    //所以：现在需要通过数组对象的形式对于初始的内容重新进行构建
+
+    //构建的初始化情况下的弹幕数组对象
+    var barrages = [];
+    messages.forEach((item)=>{
+         //弹幕文本对象
+         var obj = {};
+         //弹幕文本
+         obj.text = item;
+         //弹幕颜色
+         obj.color = 'red';
+         //弹幕文本字号
+         obj.size = (Math.ceil(Math.random() * 12) + 10) + 'px';
+         //弹幕速度
+         obj.speed = Math.ceil(Math.random() * 3) + 2;         
+         //弹幕坐标
+         obj.x = 750;
+         obj.y = Math.floor(Math.random() * 400);
+         //将弹幕文本对象存储到数组中
+         barrages.push(obj);
+    });
+    
+    function draw(){
+
+        //擦除画布之前绘制的内容
+        ctx.clearRect(0,0,800,400);
+        barrages.forEach((item)=>{
+            //设置文本颜色
+            ctx.fillStyle = item.color;
+
+            ctx.font = item.size + " Microsoft Yahei";
+            //绘制文本
+            ctx.fillText(item.text,item.x,item.y);           
+            //每次绘制时调整X轴坐标的位置
+            item.x -= item.speed;
+
+           
+
+            //当文本向左滚动到左边界时，重新从右侧滚动
+            if(item.x <= - ctx.measureText(item.text).width){
+              item.x = 800;
+              //遇到的技术问题:如何获取文本的宽度             
+            }
+        });
+        //重复执行动画帧
+        window.requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

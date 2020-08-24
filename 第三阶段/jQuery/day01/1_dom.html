@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>jQuery/$工厂函数</h1>
+  <button id="btn1">click me(0)</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //DOM4步：
+    //查找触发事件的元素
+    //本例中：点击id为btn1的按钮，触发事件
+    var btn=document.getElementById("btn1");
+    //绑定事件处理元素
+    btn.onclick=function(){
+      //查找要修改的元素
+      //本例中：修改当前按钮的内容里的括号里的数字
+      //不用修改，该this就行
+      //修改元素
+      //获取当前按钮括号里的数字
+      var n=parseInt( this.innerHTML  //click me(0)   括号里的数字可能会有2/3/4..位、因此要截取到-1
+                                     //0123456789
+                                     .slice(9,-1) );
+      //将数字+1
+      n++;
+      //再将+1后的数字，放回按钮内容中的括号内
+      this.innerHTML=`click me(${n})`;
+    }
+      
+  </script>
+</body>
+</html>

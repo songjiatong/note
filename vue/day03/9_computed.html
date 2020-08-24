@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--计算购物车总价-->
+  <div id="app">
+    <h3>总价: ¥{{total.toFixed(2)}}</h3>
+    <ul>
+      <!--小计: 因为计算简单所以不用计算属性-->
+      <li v-for="(p,i) of cart" :key="i">
+        {{i+1}} | {{p.pname}} | ¥{{p.price.toFixed(2)}} | {{p.count}} | 小计:¥{{(p.price*p.count).toFixed(2)}}
+      </li>
+    </ul>
+    <!--总价因为计算过程复杂，所以应该用计算属性-->
+    <h3>总价: ¥{{total.toFixed(2)}}</h3>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        cart:[
+          {pname:"华为", price:5588, count:2},
+          {pname:"苹果", price:8588, count:1},
+          {pname:"小米", price:3588, count:3}
+        ]
+      },
+      methods:{
+        
+      },
+      computed:{
+        //定义计算属性total，根据data中cart数组中的内容，计算出总价
+        total(){
+          console.log(`计算了一次总价`)
+          var result=0;
+          for(var p of this.cart){
+            result+=p.price*p.count;
+          }
+          return result;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

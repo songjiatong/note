@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>动态创建表格</title>
+<meta charset="utf-8" />
+<style>
+	table{width:600px; border-collapse:collapse;
+		text-align:center;
+	}
+	td,th{border:1px solid #ccc}
+</style>
+
+</head>
+<body>
+	<div id="data">
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>薪资</th>
+          <th>年龄</th>
+          <th>删除</th>
+        </tr>
+      </thead>
+      <!-- 如果tbody已经在DOM树上了 -->
+      <tbody></tbody>
+    </table>
+  </div>
+  <script>
+	var json=[
+    {"ename":"Tom", "salary":11000, "age":25},
+    {"ename":"John", "salary":13000, "age":28},
+    {"ename":"Mary", "salary":12000, "age":25}
+  ];
+  //先找到table保存在变量中
+  var table=document.getElementById("data").children[0];
+	//先查找tbody
+  var tbody=document.querySelector("#data>table>tbody");
+  //先创建一个文档片段对象
+  var frag=document.createDocumentFragment();
+  //遍历json数组中每个员工对象
+  for(var emp of json){
+    //每遍利一个对象就创建一个tr,追加到文档片段对象下
+    //var tr=document.createElement("tr");
+    //frag.appendChild(tr);
+    var tr=tbody.insertRow();  //末尾添加新行
+       // =tbody.insertRow(0); 开头添加新行
+    //再次遍历每个员工对象中的属性值，每遍利一个就创建一个td，追加到tr下并把属性值保存到td中
+    for(var key in emp){
+      //var td=document.createElement("td");
+      //tr.appendChild(td);
+      var td=tr.insertCell();
+      td.innerHTML=emp[key];
+    }
+    //为每个tr多加一行
+    //先创建一个td
+    //var td=document.createElement("td");
+    //追加到每个tr下的td之后
+    //tr.appendChild(td);
+    var td=tr.insertCell();
+    //创建一个按钮
+    var btn=document.createElement("button");
+    //设置按钮的内容为×
+    btn.innerHTML="×";
+    //将按钮加入到td下
+    td.appendChild(btn);
+    //为每个按钮绑定单击事件
+    btn.onclick=function(){
+      //让每个按钮电机时变为❀
+      //this.innerHTML="❀";
+      //先找到当前行的tr
+      var tr=this.parentNode.parentNode;
+      //     btn      td        tr
+      //获得当前行第一个td中的内容---员工姓名
+      var ename//=tr.children[0].innerHTML;
+               = tr.cells[0].innerHTML;
+      //弹出确认框
+      var agree=confirm(`是否继续删除${ename}?`);
+      //删除当前按钮所在的行
+      if(agree==true){
+        table.deleteRow(tr.rowIndex);
+      }//否则点击取消，返回false,就什么也不干
+    }
+  }
+  //所有子元素tr都添加到文档片段中之后，再将文档片段对象一次性添加到tbody下
+  tbody.appendChild(frag);
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 1.先做界面 -->
+  <div id="app">
+    <h1>用户名：{{uname}}</h1>
+    <h1>性别:{{sex==1?"男":"女"}}</h1>
+    <h1>价格:{{(price*count).toFixed(2)}}</h1>
+    <h1>时间:{{new Date().toLocaleString()}}</h1>
+  </div>
+  <script>
+    // 2.定义data对象保存界面中所需的变量的初始值
+    
+    //今后的data变量不在直接定义，而是放在new Vue()中的
+     // 3.定义new Vew()将界面和data绑定起来
+    new Vue({
+        el:"#app",
+        data:{
+          uname:"dingding",  //将来从服务器请求返回
+          sex:1,
+          price:200,
+          count:10,
+          orderTime:1589536747237
+        }, 
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      width:90%;
+      margin:0 auto;
+      text-align: center;
+    }
+    #ad{
+      position: absolute;
+      top:2%;
+      left:50%;
+      margin-left:-180px;
+      width:400px;
+      height:300px;
+    }
+
+    .click{
+      margin-top:150px;
+    }
+    #progress{
+      width:640px;
+      height:3px;
+      margin-left: 90px;
+      border:1px solid #aaa;
+      border-radius: 2px;
+    }
+    #current01{
+      display: block;
+      height:3px;
+      background-color:#f00;
+    }
+  </style>
+</head>
+
+<body class="container">
+  <video id="video"></video>
+  <div id="ad">
+    <img src="ad/0D0100005E588109395059360246315A.jpg" alt="">
+  </div>
+  <p id="progress">
+    <span id="current01"></span>
+  </p>
+  <p>
+    <span id="current">00:00</span>
+    <span id="duration">00:00</span>
+  </p>
+  <p class="click">
+    <button onclick='SetVideoURL()'>点我设置视频的URL地址</button>
+    <button onclick='incrementVolume()'>增大音量</button>
+    <button onclick='decrementVolume()'>减小音量</button>
+    <ul style="list-style-type:none">
+        <li><button onclick="changePlaybackRate('0.5')">0.5</button></li>
+        <li><button onclick="changePlaybackRate('1.0')">1.0</button></li>
+        <li><button onclick="changePlaybackRate('2.0')">2.0</button></li>
+        <li><button onclick="changePlaybackRate('5.0')">5.0</button></li>
+    </ul>
+    <button onclick="changecurrentTime('10')">前进10秒</button>
+    <button onclick="changecurrentTime('-10')">后退10秒</button>
+    <button onclick="toggleControl()">播放/暂停</button>
+  </p>
+
+  <script>
+    var adLists=[
+      '0D0100005E0DB3591241923143384738.jpg','0D0100005E2EF493395059357930375A.jpg','0D0100005E4DDCB31126293290574D55.jpg','0D0100005E40CB833950593579383235.jpg','0D0100005E588109395059360246315A.jpg','0D0100005E588109395059360246315A.jpg'
+    ];
+
+    var videoEle = document.getElementById('video');
+    function SetVideoURL() {
+      videoEle.src = 'video/video.mp4';
+      videoEle.width=640;
+      videoEle.height=360;
+      videoEle.autoplay=true;
+      videoEle.muted=true;
+      videoEle.controls=true;
+    }
+
+    function incrementVolume(){
+      videoEle.volume=Math.min(1,videoEle.volume+0.1);
+      console.log(videoEle.volume);
+    }
+
+    function decrementVolume(){
+      videoEle.volume=Math.max(0,videoEle.volume-0.1);
+      console.log(videoEle.volume);
+    }
+
+    function changePlaybackRate(value){
+      videoEle.playbackRate=value;
+    }
+
+    function changecurrentTime(value){
+      videoEle.currentTime+=parseInt(value);
+    }
+
+    function toggleControl(){
+      if(videoEle.ended || videoEle.paused){
+        videoEle.play();
+      }else{
+        videoEle.pause();
+      }
+    }
+
+    videoEle.addEventListener('loadeddata',()=>{
+      document.getElementById('current').innerText=videoEle.currentTime;
+      //document.getElementById('duration').innerText='/'+parseInt(videoEle.duration);
+    })
+
+    videoEle.addEventListener('timeupdate',()=>{
+      document.getElementById('current').innerText=(videoEle.currentTime).toFixed(2);
+      document.getElementById('duration').innerText='/'+parseInt(videoEle.duration);
+      document.getElementById('current01').style.width=640*(videoEle.currentTime/videoEle.duration)+'px';
+    })
+
+    videoEle.addEventListener('play',()=>{
+      document.getElementById('ad').style.display='none';
+      document.getElementsByTagName('img')[0].src='ad/'+adLists[Math.floor(Math.random()*adLists.length)]
+    })
+
+    videoEle.addEventListener('pause',()=>{
+      document.getElementById('ad').style.display='block';
+    })
+
+    videoEle.addEventListener('ended',()=>{
+      window.setTimeout(()=>{
+        videoEle.src= 'video/flower.mp4';
+      },1000)
+    })
+  </script>
+</body>
+
+</html>

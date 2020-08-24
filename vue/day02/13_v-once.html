@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1 v-once>页面加载完成时间:{{new Date(timer).toLocaleString()}}</h1>
+    <h1>当前系统时间:{{new Date(timer).toLocaleString()}}</h1>
+  </div>
+  <script>
+    var vm=new Vue({
+      el:"#app",
+      data:{
+        timer:new Date().getTime() //获得当前系统时间的毫秒数
+      }
+      //get timer(){}
+      //set timer(value){}
+    })
+    //因为data中的变量进入new Vue()后会被自动请保镖，且保镖直接隶属于new Vue()对象，所以其实在new Vue()外部也可以用vm.属性名方式，修改data中的变量值。vm.timer
+    //每隔1秒钟，修改new Vue()对象中的timer为当前系统时间新值
+    setInterval(function(){
+      vm.timer=new Date().getTime();
+    },1000)
+    //因为timer是访问器属性，内置通知机制。所以，即使在new Vue()外部修改timer属性，也会触发页面自动更新！
+  </script>
+</body>
+</html>

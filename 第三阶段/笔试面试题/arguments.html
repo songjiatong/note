@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 类数组对象，转为数组对象
+    // 使类数组家可以用数组家的函数
+    // 如 计算n个数字相加
+    function add(){
+      var total=0;
+      for(var sum of arguments){
+        total+=sum;
+      }
+      return total;
+    }
+    console.log(
+      add(1,2,3),
+      add(1,2,3,4,5)
+    );
+    
+    //想直接用数组家的函数reduce();
+    // 如 return arguments.reduce(prev,elem)=>prev+elem;)
+    // 就要用到数组家的函数slice(start,end+1);  截取数组:从start处开始,截取到end处
+    function add(){
+      var arr=Array.prototype.slice.call(arguments);  //相当于骗过slice()函数，让其去执行类数组  arguments.slice();slice()函数中什么也不写，等同于复制新的数组，最后将结果放入到arr中,用call()函数来替换slice()函数执行时的用到的this为arguments.
+      return arr.reduce((prev,elem)=>prev+elem);
+    }
+    console.log(
+      add(4,5,6),
+      add(4,5,6,7,8)
+    );
+    // Array.prototype.slice.call(arguments)可以简写为
+    //  [].slice.call(arguments);
+
+    //要有选择的从类数组中截取元素
+    function calc(ename){             //.slice.call(要替换this的对象,截取时开始的位置);
+      var arr=[].slice.call(arguments,1);  // .call(要替换this的对象,实参值列表)
+        var total=arr.reduce((prev,elem)=>prev+elem);
+        console.log(`${ename}的总工资为${total}`);
+    }
+    //调用时：
+    calc("Li Lei",10000,2000,3000);                               
+    calc("Han Meimei",10000,3000,4000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr1=[1,2,3,4,5];
+    var arr2=[2,4,6,4,2];
+    //判断哪个数组包含偶数
+    var result1=arr1.every(function(val){
+      console.log(`arr.some自动调用了一次回调函数，val=${val},返回结果${val%2==0}`);
+      //val自动接住当前元素值
+      //返回当前元素的判断结果
+      return val%2==0;
+    })
+    var result2=arr2.every(function(val){
+      //console.log(`arr.some自动调用了一次回调函数，val=${val},返回结果${val%2==0}`);
+      return val%2==0;
+    })
+    console.log(result1,result2);
+  </script>
+</body>
+</html>

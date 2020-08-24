@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script><!-- 单页面应用核心组件 -->
+  <script src="views/index.js"></script>
+  <script src="views/details.js"></script>
+  <script src="views/notFound.js"></script>
+  <script src="router.js"></script>
+  <!-- 页头内容可以在任意部位引入 -->
+  <script src="components/header.js"></script>
+</head>
+<body>
+  <div id="app">
+    <router-view>占位</router-view>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      router
+    })
+  </script>
+</body>
+</html>

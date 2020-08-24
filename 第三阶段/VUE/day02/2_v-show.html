@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    *{margin:0; padding:0}
+    .alert{
+      width:300px;
+      height:120px;
+      border:1px solid #aaa;
+      position:fixed;
+      top:50%;
+      right:50%;
+    }
+    .alert>p{
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <!-- 登录界面
+     只有.alert元素可能很发生变化
+      在元素上添加v-show
+      用一个变量show，来控制.alertt显示和隐藏
+      希望点击div的登录，让.alert显示，
+      希望点击×，让.alert隐藏
+      分别添加两个事件处理函数-->
+  <div id="app">
+    <button @click="login">登录</button>
+    <div class="alert" v-show="show">
+    <p><a href="javascript:;" @click="close">×</a></p>
+    用户名:<input><br>
+    密码：<input type="password"><br>
+    <button>登录</button>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        show:false
+      },  //默认隐藏  自动添加display:none;
+      methods:{
+        login(){this.show=true},
+        close(){this.show=false}
+      }
+    })
+  </script>
+</body>
+</html>

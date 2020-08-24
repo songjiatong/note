@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/axios.min.js"></script>
+</head>
+<body>
+  <!-- 希望页面上加载6个商品的列表 -->
+  <div id="app">
+    <div v-for="(p,i) of products" :key="i">{{p.pid}} | {{p.details}} | {{p.price.toFixed(2)}}</div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        products:[]
+      },
+      //加载vue对象时经历的八个周期
+      //八个生命周期钩子函数，其中创建和挂载是必经阶段，会自动触发
+      beforeCreate(){
+        console.log(`在创建data对象之前触发beforeCreate`);
+      },
+      created(){
+        console.log(`在创建data对象之后触发created`);
+      },
+      beforeMount(){
+        console.log(`在创建虚拟DOM数之前触发beforeMount`);
+      },
+      mounted(){
+        console.log(`在页面挂载完成之后触发mount`);
+        //ajax请求必须放在页面挂载完成之后的函数内，
+        //可以保障有了data中的products变量来保存请求返回的结果，又有了虚拟DOM数，用来执行DOM操作
+        axios.get("http://xzserver.applinzi.com/index")
+        .then(result=>{
+          console.log(result.data);
+          //将结果保存在vm对象中的products中
+          this.products=result.data;
+       });
+      },
+      beforeUpdate(){
+        console.log(`修改data对象中的products变量之前触发boforeUpdate`);
+      },
+      updated(){
+        console.log(`修改完data对象中的products变量之后触发updated`);
+      }
+    })
+
+    
+
+  </script>
+</body>
+</html>

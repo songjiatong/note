@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      #canvas{
+        border:1px solid #000;
+        margin:0 auto;
+        display: block;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+      let canvasEle=document.getElementById('canvas');
+      let ctx=canvasEle.getContext('2d');
+      
+      canvasEle.width=600;
+      canvasEle.height=480;
+      let x=Math.floor(Math.random()*canvasEle.width);
+      let y=Math.floor(Math.random()*canvasEle.height);
+      if(x>canvasEle.width){
+        x=canvasEle.width;
+      }
+      if(y>canvasEle.height){
+        y=canvasEle.height;
+      }
+      let xDistance=1;
+      let yDistance=2;
+      let colors=['#f00','#0f0','#00f','#ffa','#ffa','#aff','#aaa','#bbb'];
+      
+      window.setInterval(()=>{
+        ctx.clearRect(0,0,canvasEle.width,canvasEle.height);
+        ctx.beginPath();
+        ctx.arc(x,y,50,0,2*Math.PI);
+        ctx.fill();
+        x+=xDistance;
+        y+=yDistance;
+        if(x>canvasEle.width-50){
+          xDistance=-1;
+          let color=Math.floor(Math.random()*colors.length);
+          ctx.fillStyle=colors[color];
+        }
+        if(x<50){
+          xDistance=1;
+          let color=Math.floor(Math.random()*colors.length);
+          ctx.fillStyle=colors[color];
+        }
+
+        if(y>canvasEle.height-50){
+          yDistance=-2;
+          let color=Math.floor(Math.random()*colors.length);
+          ctx.fillStyle=colors[color];
+        }
+        if(y<50){
+          yDistance=2;
+          let color=Math.floor(Math.random()*colors.length);
+          ctx.fillStyle=colors[color];
+        }
+      },15);
+    </script>
+</body>
+</html>

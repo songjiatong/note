@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      display:block;
+      border:1px solid #333;
+      margin:0 auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <script>
+    var canvasEle = document.getElementById('canvas');
+    var ctx = canvasEle.getContext('2d');
+    ctx.font = "italic 20px Microsoft Yahei";
+    ctx.fillText("中华人民共和国",100,100);
+    console.log(ctx.measureText("中华人民共和国").width);
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app>div{
+      width:300px;
+      height:150px;
+    }
+    #d1{
+      background-color:red
+    }
+    #d2{
+      background-color:green;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="d1" @click="say"></div>
+    <div id="d2" @click="say"></div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      methods:{
+        //当单击div时，显示鼠标点击的位置
+        //自动创建event,自动传入事件处理函数第一个参数
+        //        ↓
+        say(      e    ){
+          alert(`x:${e.offsetX}, y:${e.offsetY}`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

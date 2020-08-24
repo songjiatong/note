@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      border:1px solid #000;
+      margin:0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width='800' height="400"></canvas>
+  <script>
+    let canvasEle=document.getElementById('canvas');
+    let ctx=canvasEle.getContext('2d');
+    let height=canvasEle.height;
+    let width=50;
+    let array=[100,170,260,90,310];
+    let color=['#aaa','#f00','#f0f','#00f','#aaf','#ccc','#ddd'];
+    for(let i=0;i<array.length;i++){
+      let index=Math.floor(Math.random()*color.length);
+      ctx.fillStyle=color[index];
+      color.splice(index,1);
+      ctx.fillRect((width+5)*i,height-array[i],width,array[i]);
+    }
+  </script>
+</body>
+</html>

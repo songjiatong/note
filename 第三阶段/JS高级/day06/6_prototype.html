@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var father={
+      bal:1000000,
+      car:"infiniti"
+    }
+     function Student(sname, sage){
+      this.sname=sname;
+      this.sage=sage;
+    }//赠: prototype->{ }
+    //先修改原型对象
+    Student.prototype=father;
+    father.constructor=Student;
+    //再创建子对象
+    var lilei=new Student("Li Lei",18);
+    var hmm=new Student("Han Meimei",19);
+    console.log(lilei);
+    console.log(hmm);
+
+    console.log(hmm.bal, hmm.car);
+    console.log(lilei.bal, lilei.car);
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>缓存</title>
+	<link rel="icon" href="dili.ico">
+</head>
+
+<body>
+	<script>
+		sessionStorage.setItem('username', 'carlin');
+		sessionStorage.setItem('age',12);
+		sessionStorage.setItem('sex', true);
+		sessionStorage.setItem('password', 'carlin');
+		sessionStorage.removeItem('age');
+		//sessionStorage.clear();
+		console.log(sessionStorage.sex);
+		console.log(window.sessionStorage.key(0));
+		console.log(sessionStorage.length);
+
+		localStorage.setItem('username', 'Tom');
+		
+
+
+
+
+
+
+
+
+		
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>DOM Tree</title>
+<meta charset="utf-8" />
+</head>
+<body>
+	<span id="s1">Hello</span>
+	<h1>标题一</h1>
+	<script>
+    console.log(document.documentElement);
+		console.log(document.head);
+		console.log(document.body);
+		//获得body下的第一个孩子
+		var body=document.body;
+		var span=body.firstElementChild;
+		console.log(span);
+		//获得body下的第二个孩子
+		var h1=body.children[1];
+		console.log(h1);
+		//获得span的后一个元素
+		var h1=span.nextElementSibling;
+		console.log(h1);
+		//获得body下的最后一个孩子
+		var script=body.lastElementChild;
+		console.log(script);
+		//获得h1的前一个元素
+		var h1=script.previousElementSibling;
+		console.log(h1);
+		//获得body下的所有孩子
+		console.log(body.children);
+		//获得子元素的父元素body
+		console.log(script.parentElement);
+		console.log(script.parentNode);//子元素的只能是被父元素包裹，所以两种方法皆可
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a id="a1" href="http://tmooc.cn">go to tmooc</a>
+  <script>
+    var a=document.getElementById("a1");
+    //旧的DOM 4个函数
+    //获得a元素的href属性值
+    // console.log(`a的href:${a.getAttribute("href")}`);
+    // //判断a元素是否包含target属性
+    // console.log(a.hasAttribute("target"));
+    // //为a元素添加target属性
+    // a.setAttribute("target","_blank");
+    // //再判断a元素是否包含target属性
+    // console.log(a.hasAttribute("target"));
+    // //移除a元素的id属性
+    // a.removeAttribute("id");
+    // //判断a元素是否包含id属性
+    // console.log(a.hasAttribute("id"));
+
+
+    //新的DOM 元素名.元素值
+    //获得a元素的href属性值
+    console.log(`a的href:${a.href}`);
+    // //判断a元素是否包含target属性
+    console.log(a.target!=="");
+    // //为a元素添加target属性
+    a.target="_blank";
+    // //再判断a元素是否包含target属性
+    console.log(a.target!=="");
+    // //移除a元素的id属性
+    a.id="";
+    // //判断a元素是否包含id属性
+    console.log(a.id!=="");
+    console.dir(a);
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="scores">
+    <!--<li>34</li>
+        <li>54</li>
+        <li>67</li>
+        <li>54</li>
+        <li>89</li>-->
+  </ul>
+  <script>
+    var arr=[34,54,67,54,89];
+
+
+    //for循环的方式
+    //创建一个空字符串用来接每个转化后的li元素
+    //var html="";
+    //for(var i=0;i<arr.length;i++){
+      //每遍历一个元素，就将该元素变成li元素的样子，拼接到html变量上
+     // html+=`<li>${arr[i]}</li>`;
+    //}
+
+
+    //map的方式
+    //遍历原数组arr,将遍历后的新数组arr2中的每个元素都变成li元素的样子
+    var arr2=arr.map(function(val){
+      console.log(`map()函数自动调用了一次回调函数，自动传入${val},返回新值"<li>${val}</li>",并放入新数组中`);
+      return `<li>${val}</li>`
+    })
+    //并将arr2中的每个元素无缝拼接为一个完整的li元素的样子<li>val</li>
+    var html=arr2.join("");
+
+
+
+    //map的方式的简化
+    //var html=arr.map(val=>`<li>${val}</li>`).join("");
+    console.log(html);
+    //查找id为scores的ul元素
+    var ulscores=document.getElementById("scores");
+    //让ul的内容区域为已经拼接好的html字符串
+    ulscores.innerHTML=html;
+  </script>
+</body>
+</html>

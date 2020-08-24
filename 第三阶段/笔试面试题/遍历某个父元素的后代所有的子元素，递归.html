@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>遍历节点树</title>
+		<meta charset="utf-8"/>
+		
+	</head>
+	<body>
+		<span>Hello World !</span>
+		<ul id="nav">
+			<li>电影</li>
+			<li>综艺
+				<ul>
+					<li>跑男</li>
+					<li>爸爸</li>
+					<li>极限</li>
+				</ul>
+			</li>
+			<li class="parent">剧集</li>
+		</ul>	
+    <script>
+		 //给定一个父节点，遍历这个父节点的所有后代子节点
+     //1.先定义一个函数，仅遍历出这个父节点的所有的直接子节点
+      function getChildren(parent){
+        var children=parent.children;
+        //遍历这个children
+        for(var child of children){
+          //没便利一个元素，就输出这个元素名
+          console.log(child.nodeName);
+          //2.再在每个子节点的内部调用和父节点一样的函数getChildren
+          getChildren(child);
+        }
+      }
+      //也称为深度优先遍历：当碰到一个父元素有子元素和兄弟元素时，先优先查找所有的子元素，只有把所有的子元素查找完，才返回查找兄弟元素
+      getChildren(document.body);
+		</script>
+	</body>
+</html>

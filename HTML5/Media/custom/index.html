@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Custom HTML5 Video Player</title>
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="video-container" id="video-container">
+
+      <!-- 视频元素开始 -->
+      <video class="video" id="video" preload="metadata" poster="poster/poster.jpg">
+        <source src="video/video.mp4" type="video/mp4">
+        </source>
+      </video>
+      <!-- 视频元素结束 -->
+
+
+      <!-- 视频控制按钮开始 -->
+      <div class="video-controls" id="video-controls">
+
+        <div class="video-progress">
+          <progress id="progress-bar" value="0" min="0"></progress>
+          <input class="seek" id="seek" value="0" min="0" type="range" step="1">
+        </div>
+
+        <div class="bottom-controls">
+          <div class="left-controls">
+            <!-- 播放暂停按钮 -->
+            <button id="control-button">
+              <img src="icons/play.png" alt="" id="control-icon">
+            </button>
+            <!-- 音量调节 -->
+            <div class="volume-controls">
+              <button id="volume-button">
+                <img src="icons/volume-on.png" alt="" id="volume-icon">
+              </button>
+              <input class="volume" id="volume" data-volume="0.8" value="0.5" type="range" max="1" min="0" step="0.01">
+            </div>
+            <!-- 进度条 -->
+            <div class="time">
+              <time id="time-elapsed">00:00</time>
+              <span> / </span>
+              <time id="duration">00:00</time>
+            </div>
+          </div>
+
+          <!-- 广告 -->
+          <div class="right-controls">
+            <button id="fullscreen-button">
+              <img src="icons/fullscreen.png" alt="" id="fullsceen-icon">
+            </button>
+          </div>
+
+        </div>
+      </div>
+      <!-- 视频控制按钮结束 -->
+
+
+    </div>
+  </div>
+  <script>
+    var videoEle = document.getElementById('video');
+    // 播放暂停
+    document.getElementById('control-button').onclick = () => {
+      if (videoEle.paused || videoEle.ended) {
+        videoEle.play();
+        document.getElementById('control-icon').src = 'icons/pause.png'
+      } else {
+        videoEle.pause();
+        document.getElementById('control-icon').src = 'icons/play.png'
+      }
+    }
+    // 播放时间显示
+    videoEle.addEventListener('timeupdate', () => {
+      let progressEle=document.getElementById('progress-bar');
+      let seekEle=document.getElementById('seek');
+      // 设置progress和input的最大值
+      progressEle.max=parseInt(videoEle.duration);
+      seekEle.max=parseInt(videoEle.duration);
+      document.getElementById('duration').innerText = formatTime(videoEle.duration);
+      document.getElementById('time-elapsed').innerText = formatTime(videoEle.currentTime);
+      seekEle.value = parseInt(videoEle.currentTime);
+      progressEle.value=parseInt(videoEle.currentTime) ;
+    })
+    // 进度条
+    document.getElementById('seek').oninput = () => {
+      videoEle.currentTime = parseInt(document.getElementById('seek').value)
+    };
+    // 音量按钮
+    document.getElementById('volume-button').onclick = () => {
+      let imgEle = document.getElementById('volume-icon');
+      let inpEle=document.getElementById('volume');
+      videoEle.muted=!videoEle.muted;
+      if (videoEle.muted) {
+        inpEle.dataVolume=inpEle.value;    //在将音量调零之前保存之前的音量的value的值，保存在自定义属性data-volume中
+        inpEle.value=0;
+        imgEle.src = 'icons/volume-off.png'
+      } else {
+        inpEle.value=inpEle.dataVolume;   //在打开音量时，音量大小在静音之前的位置 
+        imgEle.src = 'icons/volume-on.png'
+      }
+    }
+    // 音量大小调节
+    document.getElementById('volume').oninput = () => {
+      if(videoEle.muted){
+        videoEle.muted=false;
+        document.getElementById('volume-icon').src='icons/volume-on.png';
+      }
+
+      if(document.getElementById('volume').value==0){
+        videoEle.muted=true;
+        document.getElementById('volume-icon').src='icons/volume-off.png';
+      }else{
+        videoEle.muted=false;
+        document.getElementById('volume-icon').src='icons/volume-on.png';
+      }
+
+      videoEle.volume = document.getElementById('volume').value;
+      var value=document.getElementById('volume').value;
+    }
+    
+    // 全屏及退出
+    document.getElementById('fullscreen-button').onclick = () => {
+      let imgEle=document.getElementById('fullsceen-icon');
+      let containerEle=document.getElementById('video-container');  //整个video元素进入全屏
+      if (getFullscreenElement() ) {
+        exitFullscreen();
+        imgEle.src='icons/fullscreen.png';
+      } else {
+        let imgEle=document.getElementById('fullsceen-icon');
+        let containerEle=document.getElementById('video-container');  //整个video元素进入全屏
+        enterFullscreen(containerEle) ;
+        imgEle.src='icons/fullscreen-exit.png';
+      }
+
+    }
+    // 进入全屏的兼容函数
+    function enterFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen()
+      } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen()
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+    // 退出全屏的兼容函数
+    function exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullScreen) {
+        document.webkitExitFullScreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+    // 获取已进入全屏的元素，可以用来判断整个document中进入全屏的元素
+    function getFullscreenElement() {
+      return document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+    }
+
+    // 进度条的详细时间函数
+    function formatTime(time) {
+      let hours = parseInt(time / 3600);
+      let minuts = parseInt((time - hours * 3600) / 60);
+      let seconds = parseInt(time % 60);
+      hours = hours < 10 ? '0' + hours : hours;
+      minuts = minuts < 10 ? '0' + minuts : minuts;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      return hours + ':' + minuts + ':' + seconds;
+    }
+
+  </script>
+</body>
+
+</html>

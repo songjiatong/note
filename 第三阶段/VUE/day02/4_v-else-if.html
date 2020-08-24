@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 根据pm25的数值，显示不同的表情 
+    定义界面
+    页面中，四个img根据pm25的值只显示一张
+    应该用v-if,v-else-if,v-else,并且只用一个变量pm25控制显示哪个img-->
+  <div id="app">
+    <img v-if="pm25<100" src="img/1.png" alt="">
+    <img v-else-if="pm>200" src="img/2.png" alt="">
+    <img v-else-if="pm<300" src="img/3.png" alt="">
+    <img v-else src="img/4.png" alt="">
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        pm25:75
+      }
+    })
+  </script>
+</body>
+</html>

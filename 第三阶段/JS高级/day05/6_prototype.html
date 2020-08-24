@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //定义一个构造函数，描述学生类型对象的同一结构
+    //学生有年龄，姓名，自我介绍
+    function Student(sname,sage){
+      this.sname=sname,
+      this.sage=sage
+     //从此不用在构造函数中创建函数定义方法了
+    }
+    //为所有的子对象的公共父对象--原型对对象中添加公有方法intr
+    Student.prototype.intr=function(){
+      console.log(`I am ${this.sname},I am${this.sage}`);
+    }
+    var lilei=new Student("lilei",11);
+    //lilei.__proto__=Student.prototype  自动执行的一步
+    var hmm=new Student("hmm",12);
+    //hmm.__proto__=Student.prototype  自动执行的一步
+    console.log(lilei);
+    console.log(hmm);
+    lilei.intr();
+    //验证所有子对象的原型对是否都是同一个对象（即prototype）
+    console.log(lilei.__proto__==hmm.__proto__);
+  </script>
+</body>
+</html>

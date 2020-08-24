@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr=["亮亮","然然","东东"];
+    //用for循环：没有可简化的空间了
+    //for(var i=0;i<arr.length;i++){
+      //alert(`${arr[i]}-到`);
+    //}
+    //用forEach
+    //arr.forEach(function(val){
+      //console.log(`forEach()函数自动调用了一次回调函数，自动传入val=${val}`);
+      //alert(`${val}-到`);
+    //});
+    //forEach简化后
+    arr.forEach((val)=>alert(`${val}-到`));
+  </script>
+</body>
+</html>

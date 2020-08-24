@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>jQueryAPI特点</h1>
+  <button id="btn1">click me(0)</button><br>
+  <button id="btn2">click me(0)</button><br>
+  <button id="btn3">click me(0)</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //为三个按钮绑定单击事件，记录单击次数
+    //DOM4步
+    //查找触发事件的元素
+    //本例中3个按钮都能点
+    var $btns=$("button");
+    console.log($btns);
+    //绑定事件处理函数
+    //本例中，给每个按钮绑定单击事件
+    //但是，只要对$btns这个整体调用了一次click(),就可以为内部三个安按钮都绑定单击事件，---自带for循环
+    $btns.click(function(){
+      //alert(`疼!`);
+      //点谁让谁变为❀
+      var $btn=$(this);
+      //$btn.html("❀");  //由于自带for循环，所以this指的是当前点击的某个按钮
+      //查找要修改的元素
+      //修改当前阿按钮自己的内容
+      //修改元素
+      //先取出当前按钮内容中的括号里的数字
+      var n=parseInt( $btn.html().slice(9,-1) );
+      //数字+1
+      n++;
+      //再将修改后的数字放回括号内部
+      $btn.html(`click me($(n))`);
+    })
+      
+  </script>
+</body>
+</html>

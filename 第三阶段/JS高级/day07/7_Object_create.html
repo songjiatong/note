@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var father={
+      bal:1000000,
+      car:"infiniti"
+    }
+    //创建一个子对象hmm,来继承父对象father
+    var hmm=Object.create(father,{
+      //并添加2个hmm的自有属性
+      bao:{
+        value:"LV",
+        writable:true,
+        enumerable:true,
+        configurable:false
+      },
+      phone:{
+        value:"浴霸",
+        writable:true,
+        enumerable:true,
+        configurable:false
+      }
+    });
+    console.log(hmm);
+    console.log(hmm.bao,hmm.phone);
+  </script>
+</body>
+</html>

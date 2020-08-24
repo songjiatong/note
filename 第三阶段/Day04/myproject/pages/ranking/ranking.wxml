@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 电影列表开始 -->
+  <view class="list">
+    <!-- 影片信息开始 -->
+    <view class="item">
+        <!-- 影片海报开始 -->
+        <navigator url="/pages/detail/detail">
+        <image webp="true" src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1484728154.webp"></image>
+        </navigator>
+        <!-- 影片海报结束 -->
+        <!-- 影片信息开始(名称、导演等) -->
+        上海滩       
+        <!-- 影片信息结束(名称、导演等) -->
+        <!-- 影片评分开始 -->
+        9.6
+        <!-- 影片评分结束 -->
+
+    </view>
+    <!-- 影片信息结束 -->
+  </view>
+  <!-- 电影列表结束 -->
+</view>

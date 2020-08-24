@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .tabs{ list-style:none; padding:0 }
+    .tabs a{
+      text-decoration:none;
+			color:#000;
+			padding:6px 12px;
+			display:inline-block;
+    }
+    .tabs>li{
+      float:left;
+      border-bottom:1px solid #000;
+    }
+    .tabs>.active{
+      border:1px solid #000;
+      border-bottom:0;
+    }
+  </style>
+ </head>
+ <body>
+		<h1>使用属性选择器实现标签页头的切换</h1>
+		<ul class="tabs">
+			<li class="active"><a data-toggle="tab" href="javascript:;">十元套餐</a></li>
+			<li><a data-toggle="tab" href="javascript:;">二十元套餐</a></li>
+			<li><a data-toggle="tab" href="javascript:;">三十元套餐</a></li>
+    </ul>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+      //DOM4步
+      //查找触发事件的元素
+      //本例中：所有data-toggle=tab的元素
+      $("[data-toggle=tab]")
+      //绑定事件处理函数
+      .click(function(){
+        //查找要修改的元素
+        //修改元素
+        //先给当前元素的爹加active的calss
+        $(this)  //返回a
+        .parent()  //返回a的爹
+        .addClass("active")    //主语需要用a的爹
+        //在移除当前元素的爹的兄弟元素的active的class
+        .siblings().removeClass("active");   //主语也需要用a的爹，所以可以直接.调用
+      })
+        
+    </script>
+ </body> 
+</html>

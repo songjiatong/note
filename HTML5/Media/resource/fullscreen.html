@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #screen{
+      width:200px;
+      height:200px;
+      background-color: #f00;
+      margin:0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="screen">
+     <button onclick='toggleFullscreen()'>退出/进入全屏</button>
+  </div>
+ 
+  <script>
+     function toggleFullscreen() {
+      if (getFullscreenElement()) {
+        exitFullscreen();
+      } else {
+        let divEle = document.getElementById('screen');
+        enterFullscreen(divEle);
+      }
+    }
+
+    function enterFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen()
+      } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen()
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+
+    
+    function exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullScreen) {
+        document.webkitExitFullScreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+
+     function getFullscreenElement() {
+      return document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+    }
+
+  </script>
+</body>
+</html>

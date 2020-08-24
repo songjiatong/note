@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--想实现根据pm25的数值显示不同的表情-->
+  <!--1. 定义界面
+    问题: 页面上哪些地方会发生怎样的变化
+    本例中: 4个img根据条件多选一显示
+    应该用v-if,v-else-if,v-else，并且用一个变量pm25控制应该显示那个img-->
+  <div id="app">
+    <img v-if="pm25<100" src="img/1.png" alt="">
+    <img v-else-if="pm25<200" src="img/2.png" alt="">
+    <img v-else-if="pm25<300" src="img/3.png" alt="">
+    <img v-else src="img/4.png" alt="">
+  </div>
+  <script>
+    //2. 创建new Vue()对象，指向id为app的元素区域
+    new Vue({
+      el:"#app",
+      //3. 定义模型变量
+      //本例中: 只需要一个pm25数值就能控制页面上的显示隐藏
+      data:{
+        pm25:75
+      }
+    })
+  </script>
+</body>
+</html>

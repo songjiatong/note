@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //定义亮哥跑步的过程
+    function liang(kuang){
+      console.log(`亮哥起跑`);
+      setTimeout(function(){  //异步，互相之间默认不等待
+        console.log(`亮哥到达终点`);
+        console.log(`亮哥放下kuang,`);
+        kuang();
+      },6000)
+    }
+    //定义然哥跑步的过程
+    function ran(kuang){
+      console.log(`然哥起跑`);
+      setTimeout(function(){  //异步，互相之间默认不等待
+        console.log(`然哥到达终点`);
+        console.log(`然哥放下kuang,`);
+        kuang();
+      },4000)
+    }
+    //定义冬哥跑步的过程
+    function dong(){
+      console.log(`冬哥起跑`);
+      setTimeout(function(){  //异步，互相之间默认不等待
+        console.log(`冬哥到达终点`);
+      },2000)
+    }
+    liang(
+      function(){
+        ran(
+          function(){
+            dong();
+          }
+        );
+      }
+    );
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict"
+    var eric={
+      eid:1001,
+      ename:"埃里克"
+    };
+    Object.defineProperties(eric,{
+      eid:{
+        writable:false,
+        //configurable:false   //从此不在手动为每个属性添加不可删除了 
+      },
+      ename:{
+        writable:false,
+        //configurable:false  //从此不在手动为每个属性添加不可删除了 
+      }
+    });
+    Object.seal(eric);
+    //试图删除eid
+    delete eric.eid;//报错：不能删除eid属性
+    eric.Eid=1002;//报错：eric是不可扩展的
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h3>{{pm25<100?'img/1.png':
+      pm25<200?'img/2.png':
+      pm25<300?'img/3.png':
+              'img/4.png'}}</h3>
+   <img :src="pm25<100?'img/1.png':
+              pm25<200?'img/2.png':
+              pm25<300?'img/3.png':
+                       'img/4.png'" alt="">
+  </div>
+   <!--根据空气质量pm2.5的数值，更改页面中显示不同图片-->
+  <!--1. 先定义界面
+  问题: 页面中哪里可能随变量自动变化
+  本例中: img元素的src属性随变量自动变化,所以需要用特殊标记标出来-->
+  <script>
+     //2. 创建new Vue()对象，指定el属性指向要监控的元素区域
+     new Vue({
+      el:"#app",
+      //3. 定义模型对象
+      //问题: 页面上共需要几个变量？
+      //本例中: 只需要一个pm25变量
+      //问题: 因为pm25只是一个数值，不是图片路径
+      //解决: 只要变量的数值不能直接使用，都可以在HTML中{{}}里对数值进行加工！
+      data:{
+        pm25:300
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--界面View-->
+  <div id="app">
+    <button @click="minus">-</button><span>{{n}}</span><button @click="add">+</button>
+  </div>
+  <script>
+    //模型对象Model
+    var data={ n:1 };
+    var methods={
+      minus(){ this.n>1&&this.n-- },
+      add(){ this.n++ }
+    }
+    //视图模型ViewModel
+    new Vue({
+      //将
+      el:"#app",//界面
+      //和 
+      data,//模型对象 
+      methods //模型对象
+      //绑定起来
+      //模型对象变化，则界面自动修改！
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Student(sname,sage){
+      this.sname=sname,
+      this.sage=sage
+    }
+    Student.prototype.intr=function(){
+      console.log(`I am${this.sname},I am${this.sage}`)
+    };
+    var lilei=new Student("lilei",11);
+    console.log(lilei.__proto__==Student.prototype);//爸爸和老公
+    console.log(lilei.__proto__.__proto__==Object.prototype);//爸爸的爸爸和妈妈的爸爸
+  </script>
+</body>
+</html>

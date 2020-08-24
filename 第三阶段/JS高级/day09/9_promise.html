@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //定义亮哥跑步的过程
+    function liang(){
+      return new Promise(
+        function(door){
+          console.log(`亮哥起跑`);
+          setTimeout(function(){
+            console.log(`亮哥到达终点`);
+            console.log(`亮哥开门`);
+            door();
+          },6000)
+        }
+      )
+    }
+
+
+     //定义然哥跑步的过程
+     function ran(){
+      return new Promise(
+        function(door){
+          console.log(`然哥起跑`);
+          setTimeout(function(){
+            console.log(`然哥到达终点`);
+            console.log(`然哥开门`);
+            door();
+          },4000)
+        }
+      )
+    }
+     //定义冬哥跑步的过程
+    function dong(){
+          console.log(`冬哥起跑`);
+          setTimeout(function(){
+            console.log(`冬哥到达终点`);
+            console.log(`比赛结束`)
+          },2000)
+    }
+    //调用
+    liang().then(ran).then(dong);
+  </script>
+</body>
+</html>

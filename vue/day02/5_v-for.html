@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(p,i) of products" :key="i">{{i+1}} | {{p.pname}} | {{p.price}}</li>
+    </ul>
+    <ul>
+      <li v-for="(value,key) of lilei" :key="key">{{key}} : {{value}}</li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        products:[
+          {pname:"华为", price:5588},
+          {pname:"苹果", price:8588},
+          {pname:"小米", price:3588},
+        ],
+        lilei:{
+          sid:1001,
+          sname:"Li Lei",
+          sage:11
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //假设一个数组中定义了一条敏感词的范围
+    var keywords=["白鹭","青天","香炉"];
+    //keywords.join("|"); 按照|分隔数组
+    console.log(keywords.join("|"));
+    //用户输入消息
+    var msg=prompt("请输入消息");
+    //判断消息中是否包含数组中敏感词
+    //错误  var i=msg.search(/keywords.join("|")/);
+    var i=msg.search( new RegExp(keywords.join("|")) );
+    if(i!=-1){
+      document.write(`<h2 style="color:red">包含敏感词，禁止发送</h2>`);
+    }else{
+      document.write(`<h2 style="color:red">然哥说：${msg}</h2>`);
+    }
+  </script>
+</body>
+</html>

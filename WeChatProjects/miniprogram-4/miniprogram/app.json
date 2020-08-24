@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/ranking/ranking",
+    "pages/index/index",
+    "pages/detail/detail",
+   
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#0aa1ed",
+    "navigationBarTitleText": "学子影院",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color":"#888",
+    "selectedColor":"#0aa1ed",
+    "backgroundColor":"#ddd",
+    "borderStyle":"black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/home_disabled.png",
+        "selectedIconPath": "image/home_enabled.png"
+      },
+      {
+        "pagePath": "pages/ranking/ranking",
+        "text": "排行榜",
+        "iconPath": "image/ranking_disabled.png",
+        "selectedIconPath": "image/ranking_enabled.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

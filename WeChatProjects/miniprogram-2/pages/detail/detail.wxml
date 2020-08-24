@@ -1,0 +1,11 @@
+<!--pages/detail/detail.wxml-->
+<wxs src="../../format.wxs" module="tools"></wxs>
+<view class="container">
+  <view class="title">{{detail.title}}</view>
+  <view>
+    <image src="{{detail.images.large}}"></image>
+    <view>
+      导演：{{tools.formatArray(detail.directors)}}
+    </view>
+  </view>
+</view>

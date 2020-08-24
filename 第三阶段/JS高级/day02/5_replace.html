@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var str="老师：请用 小红 我的 朋友 造句。小亮：小红是我的朋友。小然：朋友!小红是我的！";
+    /*var str="you can you up,no can no bibi";*/
+    //先查找所有的敏感词
+    var arr=str.match(/小[\u4e00-\u9fa5]/g);
+    //替换 str中所有已"小"字开头的人名,为**
+    var str=str.replace(/小[\u4e00-\u9fa5]/g,"**");
+    console.log(str);
+    /*if(arr!=null){
+      console.log(`共替换了${arr.length}处`);
+    }else{
+      console.log(`共替换了0处`);
+    }*/console
+    //三目：
+    console.log(`共替换了${arr!=null?arr.length:0}处`);
+  </script>
+</body>
+</html>

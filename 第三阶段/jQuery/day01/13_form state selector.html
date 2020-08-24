@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>.....</title>
+  <meta charset="utf-8"/>
+  <style>
+  </style>
+ </head>
+ <body>
+	<form>
+		用户名:<input disabled></br>
+		密码:<input type="password" disabled></br>
+		<input type="checkbox">我同意本站的使用条款<br>
+		<input type="submit" value="提交注册信息" disabled/>
+	</form>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//DOM4步
+		//查找触发事件的元素
+		//本例中:点击checkbox元素发生变化
+		var $chb=$(":checkbox");
+		//绑定事件处理函数
+		$chb.click(function(){
+			 //查找要修改的元素
+			 //本例中，点checked会影响除了checkbox的其他表单元素
+			 var $others=$(":input:not(:checkbox)");  //其他表单元素
+			 //修改元素
+			 //本例中，只需要设置其他表单元素的disabled的属性值和当前chb的选中状态相反即可
+			 //$other.disabled=!$(this).checked  DOM中的，jQuery没有属性，只有函数库
+
+			 //jQuery中定义了一个专门的函数prop()来修改元素的属性---依然是一个函数两用
+			 //没有提供属性值，意为获取属性值
+			 //提供了属性值，则修改为当前的属性值
+			 //$(this).prop("checked")  获取当前点击的chb元素的disabled值，
+			 $others.prop("disabled",!$(this).prop("checked"));    //修改其他表单元素的disabled的属性值     ↓             ↓
+			 //                属性            属性值(false/true)
+		})
+		  
+	</script>
+ </body>
+</html>

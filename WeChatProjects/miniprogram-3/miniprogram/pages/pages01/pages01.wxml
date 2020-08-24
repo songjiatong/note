@@ -1,0 +1,35 @@
+<!--pages/pages01/pages01.wxml-->
+<text>pages/pages01/pages01.wxml</text>
+<button type="primary" bindtap="add" style="font-size:30rpx;margin-top:10rpx">获取云存储中文件</button>
+<image src="cloud://sjtserve02.736a-sjtserve02-1302431998/background.jpg"></image>
+
+<button type="primary" bindtap="f1" style="font-size:30rpx;margin-top:10rpx">上传图片至云存储</button>
+<image src="{{src}}"></image>
+
+
+<button type="primary" bindtap="add" style="font-size:30rpx;margin-top:10rpx">添加记录至云数据库</button>
+<input type="text" style="border:1px solid #aaa;margin:20rpx 100rpx;border-radius:10rpx" placeholder="请输入昵称" model:value="{{nickname}}"></input>
+<input type="number" style="border:1px solid #aaa;margin:20rpx 100rpx;border-radius:10rpx" placeholder="请输入年龄" model:value="{{age}}"></input>
+<input type="text" style="border:1px solid #aaa;margin:20rpx 100rpx;border-radius:10rpx" placeholder="请输入学历" model:value="{{education}}"></input>
+<input type="number" style="border:1px solid #aaa;margin:20rpx 100rpx;border-radius:10rpx" placeholder="婚否" model:value="{{married}}"></input>
+
+
+<button type="primary" bindtap="getAll" style="font-size:30rpx;margin-top:10rpx">获取数据库中记录</button>
+
+
+<button type="primary" bindtap="getOther" style="font-size:30rpx;margin-top:10rpx">获取数据库中指定字段数据</button>
+
+
+<button type="primary" bindtap="getByCloudtion" style="font-size:30rpx;margin-top:10rpx">根据指定条件获取特定数据</button>
+
+<button type="primary" bindtap="getData" style="font-size:30rpx;margin-top:10rpx">获取年龄大于30且性别为true的数据</button>
+
+<button type="primary" bindtap="getageAvg" style="font-size:30rpx;margin-top:10rpx">获取平均年龄</button>
+
+<button type="primary" bindtap="changeAge" style="font-size:30rpx;margin-top:10rpx">更新年龄</button>
+
+<button type="primary" bindtap="removeId" style="font-size:30rpx;margin-top:10rpx">删除指定id的字段</button>
+
+<button type="primary" bindtap="getFun" style="font-size:30rpx;margin-top:10rpx">获取云函数中的计算结果</button>
+
+<button type="primary" bindtap="getDatabase" style="font-size:30rpx;margin-top:10rpx">获取运输数据库数据</button>

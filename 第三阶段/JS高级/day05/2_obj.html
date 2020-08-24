@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //创建一个对象保存学生的属性和功能
+  var lilei={
+    sname:"lilei",
+    age:11,
+    intr:function(){
+      console.log(`im ${this.sname},im ${this.age}`);
+    }
+  }
+  //输出姓名
+  console.log(lilei.sname);
+  //打印年龄
+  console.log(lilei.age);
+  //输出自我介绍
+  lilei.intr();
+  lilei.age++;
+  //输出姓名
+  console.log(lilei.sname);
+  //打印年龄
+  console.log(lilei.age);
+  //输出自我介绍
+  lilei.intr();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="4_todo-add.js">
+    //var todoAdd={ ... }
+  </script>
+  <script src="4_todo-item.js">
+    //var todoItem={ ... }
+  </script>
+  <script src="4_todo-list.js">
+    //var todoList={ 
+    //  ... 
+    //  components:{ todoItem }
+    //}
+  </script>
+  <script src="4_todo.js">
+    //Vue.component("todo",{ 
+    //  ...
+    //  components:{ todoAdd, todoList } 
+    //})
+  </script>
+  
+  
+</head>
+<body>
+  <div id="app">
+    <todo></todo>
+  </div>
+  <script>
+    new Vue({
+      el:"#app"
+    })
+  </script>
+</body>
+</html>

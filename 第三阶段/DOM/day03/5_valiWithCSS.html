@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>实现带样式的表单验证</title>
+	<link rel="Stylesheet" href="css/5.css" />
+ </head>
+ <body>
+	<form id="form1">
+		<h2>增加管理员</h2>
+		<table>
+			<tr>
+				<td>姓名：</td>
+        <td>
+					<input name="username"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_info">
+						10个字符以内的字母、数字或下划线的组合
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td>
+					<input type="password" name="pwd"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_info">6位数字</div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2">
+          <input type="submit" value="保存"/>
+          <input type="reset" value="重填"/>
+				</td>
+			</tr>				
+	    </table>
+	</form>
+	<script>
+		//为文本框添加事件
+		//DOM4步：
+		//1.查找触发事件的元素
+		//本例中，
+		//当文本框获得焦点或失去焦点时，会触发事件函数
+		//查找name为username的一个文本框
+		//var txtName=document.getElementsByName("username")[0];//获得的是一个集合，要取第一个元素对象
+		//简写：
+		//先查找整个form元素
+		var form=document.forms[0];
+		//查找name为username的一个文本框对象
+		var txtName=//pwdForm.element[0];
+								//pwdForm.element[username];
+								form.username;
+		//var pwdName=document.getElementsByName("pwd")[0];//获得的是一个集合，要取第一个元素对象
+		//让姓名文本框在一开始的时候就自动获得焦点，减少用户一次点击操作
+		txtName.focus();
+		//简写：
+		//查找name为pwd的一个密码框对象
+		var pwdName=//pwdform.element[1];
+								//pwdform.element[pwd];
+								form.pwd;
+		//2.绑定事件处理函数
+		//本例中，先获得焦点，然旁边的div显示出来
+		txtName.onfocus=pwdName.onfocus=function(){//验证文本框和密码框格式相同，可以让两者都等于同一个函数事件
+			//3.查找要修改的元素
+			//本例中，查找文本框旁边的div
+			//查找当前文本框的爹的下一个兄弟的孩子
+			var div=this.parentElement.nextElementSibling.children[0];
+			//4.修改元素
+			//本例中，去掉隐身的vali_info
+			div.className="";
+		}
+
+		
+		 //封装一个验证失去焦点时的函数 validate()
+		function validate(txt,reg){  //为该函数设置参数值，以供内部代码用
+			var div=txt.parentElement.nextElementSibling.children[0];  //其中可直接将this替换为形参值，将来调用时，在传入当时点击的元素的值（实参值）
+			//4.修改元素
+			//先定义正则表达式，规定姓名的格式
+			//用正则验证用户输入的姓名格式是否正确
+			if( reg.test(txt.value)==true ){
+				//如果正确，就为旁边的div添加类名为vali_success的属性
+				div.className="vali_success"
+			}else{//否则，就为div添加类名为vali_fail的属性
+				div.className="vali_fail"
+			}
+		}
+
+
+	
+
+		 //本例中：再实现失去焦点时，让旁边的div显示内容是否正确
+		txtName.onblur=function(){
+			//文本框失去焦点时验证用户输入的内容的正则表达式
+			var reg=/^\w{1,10}$/;
+			//调用封装好的函数,并传入实参值，
+			validate(this,reg);  //this为.前的txtName;	
+		}
+		  
+
+		
+		 
+
+		 //本例中：再实现失去焦点时，让旁边的div显示内容是否正确
+		pwdName.onblur=function(){
+			//密码框失去焦点时验证用户输入的密码的正则表达式
+			var reg=/^\d{6}$/;
+			//调用封装好的函数,并传入实参值，
+			validate(this,reg);  //this为.前的pwdName;
+		}
+	</script>
+ </body>
+</html>

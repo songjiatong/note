@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function intr(msg="主人很懒，神魔也没有留下"){
+      document.write(`然哥的自我介绍：${msg}</br>`);
+    }
+    intr(`日照香炉生紫烟`);
+    intr();
+
+
+
+    //function order({
+    //  zhushi:zhushi,
+    //  xiaochi:xiaochi,
+     // yinliao:yinliao
+    //}){
+
+
+    //function order({zhushi,xioachi,yinliao}){
+      //默认值
+      //条件满足（短路），才执行
+      //zhushi===undefined&&(zhushi="香辣鸡腿堡"),
+      //xiaochi===undefined&&(xiaochi="薯条"),
+      //yinliao===undefined&&(yinliao="可乐")
+    
+    function order({zhushi="香辣鸡腿堡",xiaochi="薯条",yinliao="可乐"}){
+      document.write(`您点的套餐是：</br>
+          主食：${zhushi},</br>
+          小吃：${xiaochi},</br>
+          饮料：${yinliao}</br>
+      `);
+    }
+    //多个形参值都不确定的情况下，就不能用默认值来解决
+    order({});//即使所有的都用默认值，也要写一个空对象{}
+    order({
+      zhushi:"奥尔良鸡腿堡"
+    });//可以换
+    order({
+      zhushi:"巨无霸",
+      xiaochi:"土豆泥"
+    });//可以换
+    order({
+      yinliao:"雪碧"
+    });//错位，
+  </script>
+</body>
+</html>

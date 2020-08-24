@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>在当前显示区范围内实现点不到的小方块</title>
+	<style>
+		div{position:fixed;width:100px;height:100px;
+			background-image:url(images/xiaoxin.gif);
+			background-size:100%;
+			left:300px;
+			top:100px;
+		}
+	</style>
+	
+ </head>
+ <body>
+	<div id="pop"></div>
+  <script>
+		var div=document.getElementById("pop");
+		//拖拽图片效果
+		var canMove=false;  //设全局变量，默认图片不可以移动
+		//当鼠标左键按下图片时，允许图片可以拖拽
+		//由于要多个函数使用该变量，所以先创建该变量备用
+		var offsetX;
+		var offsetY;
+		pop.onmousedown=function(e){
+			canMove=true;  //鼠标左键按下时，图片可以移动
+			//先计算出当前鼠标点击图片的位置
+			offsetX=e.offsetX;
+			offsetY=e.offsetY;
+		}
+		//当鼠标在文档上显示区移动时
+		document.body.onmousemove=function(e){
+			//如果图片可以拖拽，
+			if(canMove){
+				//根据鼠标的位置，计算出图片新的位置，并移动图片
+				var left=e.clientX-offsetX;
+				var top=e.clientY-offsetY;
+				if(left<0){
+					//如果图片被拖拽出最左边了，说明left<0.就让left=0;
+					left=0;
+				}else if(left>innerWidth-100){
+					//如果图片被拖拽出最右边了，说明left>innerWidth-100,就让left=innerWidth-100;
+					left=innerWidth-100;
+				}
+
+
+				if(top<0){
+					//如果图片被拖拽出最上边了，说明top<0.就让top=0;
+					top=0;
+				}else if(top>innerHeight-100){
+				//如果图片被拖拽出最下边了，说明top>innerHeight-100,就让top=innerHeight-100;
+				top=innerHeight-100;
+				}
+
+				//再将这次新的位置加到该图片css属性中
+				pop.style.left=left+`px`;
+				pop.style.top=top+`px`;
+			}	
+		}
+		//如果鼠标左键离开图片时，则图片不可以拖拽
+		pop.onmouseup=function(){
+			canMove=false;
+		}
+	</script>
+ </body>
+</html>

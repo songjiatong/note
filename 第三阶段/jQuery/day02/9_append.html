@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.container {
+			border: 1px solid #aaa;  overflow:hidden;
+		}
+		.block {
+			float: left; margin: 10px;
+			border: 1px solid #aaa;
+			background: #faa;
+			width: 150px; height: 150px;
+		}
+		.block:hover{ box-shadow:0 5px 6px #000; }
+		.close {
+			float:right; padding:5px;
+			font-weight:bold; opacity:.2; cursor: pointer;
+		}
+		.close:hover { opacity: .5; }
+	</style>
+ </head>
+ <body>
+  <h1>添加/删除节点</h1>
+	<button id="add-block">添加区块</button>
+	
+	<div class="container">
+<!-- 		<div class="block"> -->
+<!-- 			<span class="close">×</span> -->
+<!-- 		</div> -->
+	</div>
+	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//DOM4步
+		//查找触发事件处理元素
+		//本例中，点击按钮添加方块
+		$("#add-block")
+		//绑定事件处理函数
+		.click(function(){
+			 //查找要修改的元素
+			 //本例中所有创建的方块都要添加到class为container的div元素中
+			 //var $div=$(".container");  不用找该div元素，在追加时可以直接获取该父元素
+			 //修改元素
+			 //创建一个新的方块
+			 $(`<div class="block"><span class="close">×</span></div>`)
+			 //将新方块追加到父元素div的开头
+			 .prependTo(".container")   //返回新方块，后续可以直接用.调用
+			 //新的方块出现随机颜色
+			 .css("background-color",`rgb(${parseInt(Math.random()*256)},${parseInt(Math.random()*256)},${parseInt(Math.random()*256)})`)
+			//每添加一个方块，都要继续查找当前方块下的×按钮，绑定单击事件，
+			//当单击时，删除当前×的父元素方块
+			//return $block新方块, 下面可以直接.调用
+			.children(".close")
+			//绑定单击事件
+			.click(function(){
+				$(this).parent().remove();
+			})
+		})		
+	</script>
+	
+ </body>
+</html>

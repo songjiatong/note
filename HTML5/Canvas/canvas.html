@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width='600' height='400'></canvas>
+  <script>
+    let canvasEle=document.getElementById('canvas');
+    let ctx=canvasEle.getContext('2d');
+    ctx.strokeStyle='red';
+    ctx.strokeRect(100,100,200,100);
+    ctx.fillStyle='green';
+    ctx.fillRect(310,100,200,100);
+    ctx.fillStyle='#ccc';
+    ctx.fillRect(100,10,410,80);
+  </script>
+</body>
+</html>

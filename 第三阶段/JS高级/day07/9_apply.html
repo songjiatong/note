@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //一个公共的临时计算薪资的函数
+    //               底薪  奖金1  奖金2
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename}的总工资是:${base+bonus1+bonus2}`);
+    }
+    //两个员工希望计算自己的薪资
+    var lilei={ename:"Li Lei"};
+    var hmm={ename:"Han Meimei"}
+    //lilei的工资条是一个数组
+    var arr=[1000,2000,3000];
+    var arr1=[2000,3000,4000];
+    jisuan.apply(lilei,arr);//apply使用后先将arr打散位：  1000,2000,3000，再传参
+    //apply(使用)具有call的功能，但是比call多一个功能：打散数组后再传参
+    jisuan.apply(hmm,arr1);
+  </script>
+</body>
+</html>

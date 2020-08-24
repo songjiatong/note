@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //var add=(...nums)=>{
+      //var sum=0;
+      //for(var n of arguments){ //报错,arguments is not defined;
+      //for(var n of nums){
+        //sum+=n;
+      //} 
+      //return sum;
+    //}
+    var add=(...nums)=>nums.reduce((prev,val)=>(prev+val),0)
+
+
+    console.log(add(1,2,3,4,5));
+
+    //计算薪资：要求必须输入员工姓名，但是工资由几部分组成，不确定
+    function jisuan(ename,...arr){
+      console.log(`${ename}的总工资是：￥${arr.reduce((prev,val)=>prev+val,0)}`);
+    }
+    jisuan("Li Lei",1000,2000,3000);
+    jisuan("Han Meimei",1000,2000,3000,4000);
+  </script>
+</body>
+</html>

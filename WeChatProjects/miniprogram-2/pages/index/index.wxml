@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="container">
+
+	<view class="swiper">
+		<swiper autoplay="true" indicator-dots="true" indicator-color="#0ff" indicator-active-color="#f00" duration="1000" interval="3000" circular="false">
+			<swiper-item wx:for="{{swiperArray}}" wx:key="index">
+				<image src="{{item.images.large}}"></image>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="board" wx:for="{{boards}}" wx:key="index">
+		<view class="board-title">{{item.title}}</view>
+		<view class="movie-list">
+			<view class="movie-item" wx:for="{{item.movies}}" wx:key="index">
+        <navigator url="/pages/detail/detail?id={{item.id}}">
+          <image src="{{item.images.large}}"></image>
+				  <text>{{item.title}}</text>
+        </navigator>
+			</view>
+		</view>
+	</view>
+
+  
+
+</view>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 先定义界面，要求:
+  1.1整个界面必须包裹在唯一的一个父元素内，习惯上唯一父元素命名为id="app"
+  1.2找到整个界面中可能发生变化的位置，用{{变量名}}标记出来！   因为span的内容在点击时可能发生数量变化，所以: 
+  1.3找到触发事件的元素，在元素开始标签中绑定事件处理函数: 
+    @事件名="函数名"-->
+  <div id="app">
+    <button @click="minus">-</button><span>{{n}}</span><button @click="add">+</button>
+  </div>
+  <script>
+  /*2. 定义专门保存页面所需的变量和事件处理函数的对象
+    //本例中: 页面上一共需要一个变量n和两个事件处理函数(minus和add)，所以需要:
+    2.1 创建一个对象"data"，集中保存变量n以及n的初始值
+    2.2 再创建一个对象"methods", 集中保存页面所需的所有事件处理函数
+  */
+    //不要改名！
+    var data={ n:1 };
+    var methods={
+      //methods中的方法要想操作data中的变量，必须加this.!
+      //methods中的方法只要专心操作变量值即可！不用关心页面如何增删改查！
+      minus:function(){ 
+        if(this.n>1){ this.n-- }
+      },
+      add:function(){
+        this.n++
+      }
+    }
+
+  /*创建一个快递员对象,告知快递员库房在哪儿，告知快递员专门负责哪个小区的住户！*/
+    new Vue({
+      el:"#app", //只负责id为app的小区，及其子内容
+      data:data, //小区住户们所需的变量存在哪儿
+      methods:methods //住户们所需的事件处理函数存在哪儿
+    })
+  </script>
+</body>
+</html>

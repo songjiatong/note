@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr=[1,2,3,4,5];
+    //只希望获得数字中的偶数
+    var arr2=arr.filter(function(val){
+      console.log(`filter()函数每调用一次回调函数，就把符合条件的元素传入到形参val中，如自动传入val=${val},并返回${val%2==0}`);
+      //只有那些%2==0的元素，才会被返回到新数组arr2中
+      return val%2==0;
+    });
+    console.log(arr);//原数组,不会发生改变
+    console.log(arr2);//复制后符合条件的新数组
+  </script>
+</body>
+</html>

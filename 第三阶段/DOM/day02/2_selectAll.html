@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>全选和取消全选</title>
+</head>
+<body>
+	<h2>管理员列表</h2>
+	<table border="1px" width="500px">
+	  <thead>
+		<tr>
+			<th><input type="checkbox"/>全选</th>
+			<th>管理员ID</th>
+			<th>姓名</th>
+			<th>操作</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>1</td>
+	  		<td>Tester</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>2</td>
+	  		<td>Manager</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>3</td>
+	  		<td>Analyst</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>4</td>
+	  		<td>Admin</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  </tbody>
+	</table>
+	<button>删除选定</button>
+  <script>
+		//DOM4步
+		//1.查找触发事件的元素
+		//本例中：点thead中的input会触发全选和取消全选的操作
+		var chbAll=document.querySelector("thead input");
+		//2.绑定事件处理函数
+		chbAll.onclick=function(){
+			//3.查找要修改的元素
+			//本例中，点击全选会影响tbody中所有的inout
+			var chbs=document.querySelectorAll("tbody input");
+			//4.修改元素
+			//遍历chbs中每个checkbox
+			for(var chb of chbs){
+				//让每个checkbox的checked属性值和chbAll的属性值checked值保持一致即可
+				chb.checked=chbAll.checked;
+			}
+		}		
+
+
+		//DOM4步
+		//1.查找触发事件的元素
+		//本例中：点击tbody中每个input会影响上面的chbAll
+		var chbs=document.querySelectorAll("tbody input");
+		//2.绑定事件处理函数
+		//本例中：tbody中每个input都可以点击
+		//遍历chbs中的每个checkbox
+		for(var chb of chbs){
+			//为每个chb绑定事件
+			chb.onclick=function(){
+				//3.查找要修改的元素
+				//本例中：点击每个tbody中的input，都可能硬性上面的chbAll
+				//4.修改元素
+				//本例中：
+				//先尝试查找tbody下未选中的一个input
+				var unchecked=document.querySelector("tbody input:not(:checked)");
+				//如果没找到，说明全都选中了，chbAll才选中
+				if(unchecked==null){
+					chbAll.checked=true;
+				}else{
+					//如果tbody找到了，说明有没选中的，那么chbAll就不选中
+					chbAll.checked=false;
+				}	
+			}	
+		}	
+	</script>
+</body>
+</html>

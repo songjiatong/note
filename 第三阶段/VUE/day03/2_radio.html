@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- 请用户选择性别 
+      先做界面
+      本例中随着用户切换性别，两个input的checked属性会发生变化
+      表单元素，都用v-model来绑定
+      v-model:checked="变量"
+      本例中:点击按钮，sex值变化-->
+  <div id="app">
+    <input type="radio" value="1" name="sex" id="man" v-model:checked="sex"><label for="man">男</label>
+    <input type="radio" value="0" name="sex" id="woman" v-model:checked="sex"><label for="woman" >女</label><br>
+    <button @click="submit">提交</button>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      //本例中，只有一个变量 sex
+      data:{
+        sex:1  //假设初始时选择1
+      },
+      //本例中:只有一个事件处理函数
+      methods:{
+        submit(){
+          alert(`您选择的性别是${this.sex==1?"男":"女"}`);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

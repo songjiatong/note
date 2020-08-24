@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var user={
+      uname:"dingding",
+      email:"dingding@tedu.cn",
+      phone:"1381541265",
+      //login:function(){  //ES6可以简写
+      login(){
+        console.log(`登录...`);
+      },
+      changePwd(){
+        console.log(`修改密码...`);
+      },
+      logout(){
+        console.log(`注销...`);
+      }
+    };
+    //var {uname:uname,logout:logout}=user;
+    var {uname,logout}=user;// ES6简写
+    console.log(`欢迎：${uname}`);
+    logout();//注销
+  </script>
+</body>
+</html>

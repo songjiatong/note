@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.alert{
+			border:1px solid #a33;
+			color:#922;
+			background:#fee;
+			padding:10px;
+			position: fixed;
+		}
+		.alert>.close{
+			float:right;
+			font-weight:bold;
+			opacity:.5;
+			cursor:pointer;
+		}
+		.alert>.close:hover{opacity:1}
+		/*定义淡入淡出动画的初始状态,常驻元素*/
+		.fade{ 
+			width:0px;
+			height:100px;  /*height:0px; 变为一条线淡入淡出*/
+			top:50%;
+			left:50%;
+			margin-top:-50px;
+			margin-left:0px;
+			opacity: 0;
+			overflow: hidden;
+			transition:all .5s linear;
+		}
+		 /*定义淡入淡出动画的结束状态 */
+		.in{ 
+			width:250px;
+			height:100px;
+			top:50%;
+			left:50%;
+			margin-top:-50px;
+			margin-left:-150px;
+			opacity: 1;
+		}
+	</style>
+ </head>
+ <body>
+	<button id="btn">click me!</button>
+  <div class="alert fade">
+		<span class="close">×</span>
+		<p>您的浏览器版本太低!请下载最新版本的浏览器</p>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+	  //带动画效果的弹出对话框
+		//点击按钮时，弹出对话框
+		$("#btn").click(function(){
+			//$(".alert").show();   没有动画效果
+			$(".alert").addClass("in");
+		})
+		//点击×时，关闭对话框
+		$(".close").click(function(){
+			//$(".alert").hide();   没有动画效果
+			$(".alert").removeClass("in");
+		})
+	</script>
+ </body>
+</html>

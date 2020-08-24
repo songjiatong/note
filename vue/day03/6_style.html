@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      position:fixed;
+      left:50%;
+      bottom:0;
+    }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app" >
+    <img :style="style" src="img/p3.png" alt="">
+  </div>
+  <script>
+    var vm=new Vue({
+      el:"#app",
+      data:{
+        // 不好: style:"margin-left:-100px;bottom:0"
+        //                   ↑
+        style:{//可自动翻译为 |
+          marginLeft:"-100px",//必须带单位！
+          bottom:0 //只有0特殊，可以不加单位
+        }
+      }
+    })
+    //当在窗口中按下键盘时
+    window.onkeydown=function(e){
+      //如果按的是上键,则bottom+10
+      if(e.keyCode==38){
+        //vm.style //{ marginLeft:"-100px", bottom:0 }
+        //只取出vm对象中style属性中bottom的值，转为整数
+        var bottom=parseInt(vm.style.bottom);
+        //将bottom+10，再保存回vm.style.bottom中，记得加单位
+        vm.style.bottom=bottom+10+"px";
+      }else if(e.keyCode==40){//否则如果按的是下键,则bottom-10
+        //只取出vm对象中style属性中bottom值，转为整数
+        var bottom=parseInt(vm.style.bottom);
+        //将bottom-10，再保存回vm.style.bottom中，记得加单位
+        vm.style.bottom=bottom-10+"px";
+      }else if(e.keyCode==37){//否则如果按的是左键,则marginLeft-10
+        //只取出vm对象中style属性中marginLeft值，转为整数
+        var marginLeft=parseInt(vm.style.marginLeft);
+        //将marginLeft-10，再保存回vm.style.marginLeft中，记得加单位
+        vm.style.marginLeft=marginLeft-10+"px";
+      }else if(e.keyCode==39){//否则如果按的是右键,则marginLeft+10
+        //只取出vm对象中style属性中marginLeft值，转为整数
+        var marginLeft=parseInt(vm.style.marginLeft);
+        //将marginLeft+10，再保存回vm.style.marginLeft中，记得加单位
+        vm.style.marginLeft=marginLeft+10+"px";
+      }
+    }
+  </script>
+</body>
+</html>

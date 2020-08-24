@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Student(sname, sage){
+      this.sname=sname;
+      this.sage=sage;
+    }//赠: prototype->{ }
+
+    var lilei=new Student("Li Lei",18);
+    var hmm=new Student("Han Meimei",19);
+
+    var father={
+      bal:1000000000000,
+      car:"infiniti"
+    }
+
+    //hmm想用father中的成员,可让hmm继承father:
+    //hmm.__proto__=father;
+    Object.setPrototypeOf(hmm, father);
+
+    console.log(lilei);
+    console.log(hmm);
+
+    console.log(hmm.bal, hmm.car);
+    console.log(lilei.bal, lilei.car);
+  </script>
+</body>
+</html>

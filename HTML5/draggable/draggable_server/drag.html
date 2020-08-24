@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #drag-container{
+            width:800px;
+            height:150px;
+            background-color: #aaa;
+            line-height: 150px;
+            text-align: center;
+        }
+    </style>
+    <script src="axios.min.js"></script>
+</head>
+<body>
+    <div id="drag-container">文件拖放至此实现上传</div>
+    <script>
+        let dragEle=document.getElementById('drag-container');
+        dragEle.addEventListener('dragover',(e)=>{
+            e.preventDefault();
+        })
+        dragEle.addEventListener('drop',(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            let form=new FormData();
+            form.append('username','Tom');
+            form.append('password',1234);
+            let lists=e.dataTransfer.files;
+            
+            for(let i=0;i<lists.length;i++){
+                form.append('aaa',lists[i])
+            }
+            axios.post('http://127.0.0.1:3000/drag',form)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--请用户选择性别-->
+  <!--1. 先做界面
+    问题: 界面中哪里可能发生变化
+    本例中: 随着用户切换选择性别，两个input的checked属性可能发生变化又因为是表单元素
+    所以: 两个input都用v-model:checked="变量"
+    问题: 哪个元素可能触发事件
+    本例中: 点按钮输出用户选择的性别值-->
+  <div id="app">
+    <label><input type="radio" name="sex" value="1" v-model:checked="sex">男</label>
+    <label><input type="radio" name="sex" value="0" v-model:checked="sex">女</label>
+    <br/>
+    <button @click="submit">提交</button>
+  </div>
+  <script>
+    //2. 创建new Vue()对象
+    new Vue({
+      el:"#app",
+      //3. 定义模型对象
+      //问题: 界面上一共需要几个变量
+      //本例中: 界面上只需要一个变量sex
+      //问题: 界面上共需要几个事件处理函数
+      //本例中: 只需要一个事件处理函数submit
+      data:{
+        sex:0 //假设初始时选择0
+      },
+      methods:{
+        submit(){
+          console.log(`您本次选择的性别值为${this.sex}`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

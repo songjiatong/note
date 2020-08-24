@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <script>
+    //获取HTMLCanvasElement对象
+    var canvasEle = document.getElementById("canvas");
+    //获取上下文对象
+    var ctx = canvasEle.getContext('2d');
+    
+    //window.alert(ctx);
+    //通过window.setInterval()方法不间断绘制矩形框
+    //X轴位置
+    var x = 0;
+    //X轴移动的距离
+    var xDistance = 10;    
+    window.setInterval(()=>{
+      //擦除整个画布
+      ctx.clearRect(0,0,800,600);
+      //绘制矩形框
+      ctx.strokeRect(x,100,100,100);
+      x += xDistance
+      //X轴位置
+      if(x >= 700){
+        //递减(向左移动)
+        xDistance = -10;
+      } else if(x <= 0){
+        //递增(向右移动)
+        xDistance = 10;
+      }
+    },50);
+    
+  </script>
+</body>
+</html>

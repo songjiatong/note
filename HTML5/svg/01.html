@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url(svg/background.svg);
+            background-size: cover;
+            text-align: center;
+        }
+
+        div {
+            background-color: #000;
+            text-align: center;
+        }
+
+        #a {
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="svg/logo.svg" width='150' height="90">
+    </div>
+    <div id="a">
+        <object data="svg/svglogo.svg" type="image/svg+xml" width='700'></object>
+    </div>
+    <div id="a">
+        <embed src="svg/lowdetail.svg" type="image/svg+xml" width="223" height="300">
+    </div>
+    <div id="a">
+        <iframe src="svg/iframe.svg" frameborder="0" width='300' height="500" scrolling='no'></iframe>
+    </div>
+
+    <svg width='200' height='200' version='1.2' xmlns='http://www.w3.org/2000/svg'>
+        <text x='50' y='50' font-size='50'>SVG</text>
+    </svg>
+</body>
+
+</html>

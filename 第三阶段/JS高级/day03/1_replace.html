@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //每个单词的首字母改为大写
+    var str="you can you up";
+    str=str.replace(/\b[a-z]/ig,function(keyword){
+      console.log(keyword);
+      //本次的找到的keyword共有：y c y u,分4次找到，一次找一个
+      return keyword.toUpperCase();
+    });//repalce会把返回的新值替换到字符串中本次找到的敏感词位置
+    console.log(str);//You Can You Up
+  </script>
+</body>
+</html>

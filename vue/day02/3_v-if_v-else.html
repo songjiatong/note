@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--想实现登录状态的切换-->
+  <!--1. 定义界面
+    问题: 页面中哪里可能发生变化
+    本例中: 两个div交替显示隐藏
+    所以: 用v-if和v-else，并且用一个变量isLogin来记录用户是否登录。如果isLogin值为false，说明用户未登录，则只显示第一个div。如果isLogin值为true，说明用户已登录，则只显示第二个div。
+    本例中: 点登录按钮，切换为已登录状态，点注销按钮，切换为未登录状态。所以需要给登录按钮和注销按钮都绑定单击事件-->
+  <div id="app">
+    <div v-if="isLogin==false"><a href="javascript:;" @click="login">登录</a> | <a href="javascript:;">注册</a></div>
+
+    <div v-else>Welcome dingding, <a href="javascript:;" @click="logout">注销</a></div>
+  </div>
+  <script>
+    //2. 创建new Vue()对象指向id为app的元素区域
+    new Vue({
+      el:"#app",
+      //3. 定义模型对象保存界面所需的所有变量和事件处理函数
+      //问题: 界面中共需要几个变量
+      //本例中: 界面中只需要一个isLogin变量，表示用户是否登录
+      data:{
+        isLogin:false,//开始时，用户默认是未登录
+      },
+      //本例中: 界面中共需要几个事件处理函数
+      //login() 将isLogin改为true，说明已登录
+      //logout() 将isLogin改为false，说明未登录
+      methods:{
+        login(){ this.isLogin=true },
+        logout(){ this.isLogin=false }
+      }
+    })
+  </script>
+</body>
+</html>

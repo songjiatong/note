@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+    var eric={
+      eid:1001, //只读
+      ename:"埃里克", //不能删除
+      salary:12000 //不能随便用for in遍历
+    }
+
+    //让eric的eid只读！
+    //让eric的ename属性禁止删除
+    //让eric的salary属性不能随便被for in遍历
+    Object.defineProperties(eric,{
+      eid:{
+        writable:false,
+        configurable:false //双保险，不可逆
+      },
+      ename:{
+        configurable:false
+      },
+      salary:{
+        enumerable:false,
+        configurable:false
+      }
+    })
+
+    //试图重新打开eid属性的writable开关
+    // Object.defineProperty(eric,"eid",{
+    //   writable:true,
+    //   configurable:true
+    // }); 
+    //报错: Cannot redefine property: eid
+    //      不能   重定义    属性     eid
+
+    //试图修改eid属性值
+    //eric.eid=1002;//报错: 
+    //Cannot assign to read only property 'eid'
+    // 不能   赋值   给  读   只    属性
+    //不能给只读属性赋值
+
+    //试图删除ename属性
+    //delete eric.ename;//报错: Cannot delete property 'ename'
+    //试图遍历eric所有属性，包括salary
+    for(var key in eric){
+      console.log(`${key} : ${eric[key]}`)
+    }//仅遍历到eid和ename两个属性，遍历不到salary属性
+    console.log(eric);
+    //强行用.访问salary属性
+    console.log(`eric的工资是:${eric.salary}`)
+  </script>
+</body>
+</html>

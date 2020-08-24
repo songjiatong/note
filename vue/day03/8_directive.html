@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script>
+    //给Vue家添加一个新指令my-focus
+    Vue.directive("my-focus",{
+      //当拥有该指令的元素被渲染到页面上显示之后，自动执行inserted()函数
+      inserted(elem){
+        //每次: elem都自动获得当前带有这个指令的DOM元素对象
+        //本例中: 希望当前元素自动获得焦点
+        elem.focus();//原生DOM中的函数，复习DOM第三天
+      }
+    })
+  </script>
+</head>
+<body>
+  <!--想让一个文本框*在页面加载时自动*获得焦点-->
+  <div id="app">
+    <input v-my-focus>
+  </div>
+  <script>
+    //vue所有指令的执行，全靠new Vue()在扫描过程中发现。
+    //如果没有new Vue()，单靠浏览器是不认识任何指令的！就什么也不干
+    //所以即使new Vue()中只有一个el，也必须保留！不能删除！
+    new Vue({//整个vue程序的起点！
+      el:"#app"
+    })
+  </script>
+</body>
+</html>

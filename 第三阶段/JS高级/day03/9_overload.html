@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //手机支付放入3中情况
+    function pay(){
+    //  arguments{}    下标  .length  
+      if(arguments.length==0){
+        console.log(`手机支付`);
+      }else if(arguments.length==1){
+        console.log(`现金支付，收您${arguments[0]}元`);
+      }else{
+        console.log(`刷卡支付，从您卡号为${arguments[0]}里扣款成功`);
+      }
+    }
+    pay();
+    pay(100);
+    pay(6001 1355,100);
+  </script>
+</body>
+</html>
